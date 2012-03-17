@@ -1,6 +1,5 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:date="http://exslt.org/dates-and-times"
->
+    xmlns:date="http://exslt.org/dates-and-times">
     <xsl:output indent="yes" method="html" />
 
     <xsl:template match="/project/namespace" mode="menu">
@@ -70,11 +69,7 @@
                                     Reports <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{$root}errors.html"><i class="icon-remove-sign"></i>&#160;Errors</a></li>
-                                    <li><a href="{$root}markers.html">
-                                        <i class="icon-map-marker"></i>&#160;Markers (TODO/FIXME)</a></li>
-                                    <li><a href="{$root}deprecated.html">
-                                        <i class="icon-stop"></i>&#160;Deprecated elements</a></li>
+                                    <xsl:apply-templates select="/" mode="report-overview" />
                                 </ul>
                             </li>
                         </ul>
@@ -154,6 +149,39 @@
                 <xsl:apply-templates select="." mode="footer" />
             </body>
         </html>
+    </xsl:template>
+
+    <xsl:template match="/" mode="report-overview">
+        <li>
+            <a href="{$root}errors.html">
+                <i class="icon-remove-sign"></i>&#160;Errors&#160;
+                <span class="label label-info"><xsl:value-of select="count(/project/file/parse_markers/*)" /></span>
+            </a>
+        </li>
+        <li>
+            <a href="{$root}markers.html">
+                <i class="icon-map-marker"></i>&#160;Markers&#160;
+                <ul>
+                    <xsl:apply-templates select="/project/marker" mode="report-overview" />
+                </ul>
+            </a>
+        </li>
+        <li>
+            <a href="{$root}deprecated.html">
+                <i class="icon-stop"></i>&#160;Deprecated elements&#160;
+                <span class="label label-info"><xsl:value-of select="count(//docblock/tag[@name='deprecated'])" /></span>
+            </a>
+        </li>
+    </xsl:template>
+
+    <xsl:template match="/project/marker" mode="report-overview">
+        <xsl:variable name="marker" select="."/>
+        <xsl:if test="count(//docblock/tag[@name=$marker]) > 0">
+            <li>
+                <xsl:value-of select="$marker" />&#160;
+                <span class="label label-info"><xsl:value-of select="count(//docblock/tag[@name=$marker])" /></span>
+            </li>
+        </xsl:if>
     </xsl:template>
 
 </xsl:stylesheet>
