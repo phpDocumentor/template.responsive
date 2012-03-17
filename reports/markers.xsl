@@ -26,12 +26,19 @@
 
                 <ul class="breadcrumb">
                     <li><a href="{$root}"><i class="icon-map-marker"></i></a><span class="divider">\</span></li>
-                    <li>Markers (TODO/FIXME)</li>
+                    <li>Markers</li>
                 </ul>
 
                 <xsl:if test="count(/project/file/markers|//docblock/tag[@name='todo']|//docblock/tag[@name='fixme']) &lt; 1">
-                    <div class="alert alert-info">No markers have been found in
-                        this project.
+                    <div class="alert alert-info">No markers have been found in this project.</div>
+                </xsl:if>
+
+                <xsl:if test="count(/project/marker) > 0">
+                    <div class="alert alert-info">
+                        The following markers were found:
+                        <ul>
+                            <xsl:apply-templates select="/project/marker" mode="report-overview" />
+                        </ul>
                     </div>
                 </xsl:if>
 
