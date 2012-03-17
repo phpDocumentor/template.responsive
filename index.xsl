@@ -51,9 +51,7 @@
                 <div class="well">
                     <ul class="nav nav-list">
                         <li class="nav-header">Reports</li>
-                        <li><a href="{$root}errors.html"><i class="icon-remove-sign"></i> Errors</a></li>
-                        <li><a href="{$root}markers.html"><i class="icon-map-marker"></i> Markers (TODO/FIXME)</a></li>
-                        <li><a href="{$root}deprecated.html"><i class="icon-stop"></i> Deprecated elements</a></li>
+                        <xsl:apply-templates select="/" mode="report-overview" />
                     </ul>
                 </div>
             </div>
