@@ -169,17 +169,17 @@
         <li>
             <a href="{$root}deprecated.html">
                 <i class="icon-stop"></i>&#160;Deprecated elements&#160;
-                <span class="label label-info"><xsl:value-of select="count(//docblock/tag[@name='deprecated'])" /></span>
+                <span class="label label-info"><xsl:value-of select="/project/deprecated/@count" /></span>
             </a>
         </li>
     </xsl:template>
 
     <xsl:template match="/project/marker" mode="report-overview">
         <xsl:variable name="marker" select="."/>
-        <xsl:if test="count(//docblock/tag[@name=$marker]) > 0">
+        <xsl:if test="./@count > 0">
             <li>
                 <xsl:value-of select="$marker" />&#160;
-                <span class="label label-info"><xsl:value-of select="count(//docblock/tag[@name=$marker])" /></span>
+                <span class="label label-info"><xsl:value-of select="./@count" /></span>
             </li>
         </xsl:if>
     </xsl:template>
