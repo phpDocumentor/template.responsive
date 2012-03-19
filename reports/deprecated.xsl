@@ -38,7 +38,7 @@
                         <xsl:if test=".//docblock/tag[@name='deprecated']">
                             <a name="{@path}" id="{@path}"></a>
                             <h3>
-                                <li class="icon-file"></li>
+                                <i class="icon-file"></i>
                                 <xsl:value-of select="@path" />
                                 <small style="float: right;padding-right: 10px;">
                                     <xsl:value-of select="count(.//docblock/tag[@name='deprecated'])" />
