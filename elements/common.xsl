@@ -41,8 +41,14 @@
             <xsl:variable name="name" select="."/>
             <xsl:variable name="element" select="/project/file/class[full_name=$name]|/project/file/interface[full_name=$name]"/>
 
+            <xsl:variable name="link">
+                <xsl:call-template name="createLink">
+                    <xsl:with-param name="value" select="$element/full_name"/>
+                </xsl:call-template>
+            </xsl:variable>
+
             <xsl:if test="$element">
-                <a href="{$root}classes/db_{$element/full_name}.html"><xsl:value-of select="." /></a>
+                <a href="{$root}classes/{substring($link, 2)}.html"><xsl:value-of select="." /></a>
             </xsl:if>
 
             <xsl:if test="not($element)">
@@ -114,10 +120,16 @@
     </xsl:template>
 
     <xsl:template match="tag[@name = 'package']" mode="tabular">
+        <xsl:variable name="link">
+            <xsl:call-template name="createLink">
+                <xsl:with-param name="value" select="../../@package"/>
+            </xsl:call-template>
+        </xsl:variable>
+
         <tr>
             <th><xsl:value-of select="@name"/></th>
             <td>
-                <a href="{$root}/packages/db_{../../@package}.html">
+                <a href="{$root}/packages/{$link}.html">
                     <xsl:value-of select="@description" />
                 </a>
             </td>
@@ -147,9 +159,15 @@
             <span class="divider">\</span>
         </xsl:if>
 
+        <xsl:variable name="link">
+            <xsl:call-template name="createLink">
+                <xsl:with-param name="value" select="@full_name" />
+            </xsl:call-template>
+        </xsl:variable>
+
         <li>
             <xsl:if test="$active = 'true'"><xsl:attribute name="class">active</xsl:attribute></xsl:if>
-            <a href="{$root}{local-name()}s/db_{@full_name}.html"><xsl:value-of select="@name" /></a>
+            <a href="{$root}{local-name()}s/{$link}.html"><xsl:value-of select="@name" /></a>
         </li>
     </xsl:template>
 

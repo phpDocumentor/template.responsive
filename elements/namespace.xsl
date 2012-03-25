@@ -11,7 +11,13 @@
                 |/project/file/class[@namespace=$fqnn]
                 |/project/file/interface[@namespace=$fqnn]) > 0"
             >
-                <a href="{$root}namespaces/db_{@full_name}.html" title="{@name}"><i class="icon-th"></i> <xsl:value-of select="@name" /></a>
+                <xsl:variable name="link">
+                    <xsl:call-template name="createLink">
+                        <xsl:with-param name="value" select="@full_name"/>
+                    </xsl:call-template>
+                </xsl:variable>
+
+                <a href="{$root}namespaces/{$link}.html" title="{@name}"><i class="icon-th"></i> <xsl:value-of select="@name" /></a>
             </xsl:if>
 
             <xsl:if test="count(/project/file/constant[@namespace=$fqnn]

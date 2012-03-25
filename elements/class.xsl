@@ -72,7 +72,13 @@
         <xsl:param name="element" select="/project/file/class[full_name=.]|/project/file/interface[full_name=.]"/>
 
         <xsl:if test="$element">
-            <a href="{$root}classes/db_{.}.html">
+            <xsl:variable name="link">
+                <xsl:call-template name="createLink">
+                    <xsl:with-param name="value" select="."/>
+                </xsl:call-template>
+            </xsl:variable>
+
+            <a href="{$root}classes/{substring($link, 2)}.html">
                 <xsl:value-of select="." />
             </a>
         </xsl:if>
@@ -101,19 +107,29 @@
     </xsl:template>
 
     <xsl:template match="class|interface" mode="compact">
-        <xsl:variable name="filename">db_<xsl:value-of select="full_name"/></xsl:variable>
+        <xsl:variable name="filename">
+            <xsl:call-template name="createLink">
+                <xsl:with-param name="value" select="full_name"/>
+            </xsl:call-template>
+        </xsl:variable>
 
         <a name="{name}" id="{name}" />
-        <div class="element ajax clickable {local-name()}" href="{$root}classes/{$filename}.html">
-            <h1><xsl:value-of select="name"/><a href="{$root}classes/{$filename}.html">¶</a></h1>
+        <div class="element ajax clickable {local-name()}" href="{$root}classes/{substring($filename, 2)}.html">
+            <h1><xsl:value-of select="name"/><a href="{$root}classes/{substring($filename, 2)}.html">¶</a></h1>
             <p class="short_description"><xsl:value-of select="docblock/description" disable-output-escaping="yes"/></p>
             <div class="details collapse"></div>
-            <a href="{$root}classes/{$filename}.html" class="more">&#171; More &#187;</a>
+            <a href="{$root}classes/{substring($filename, 2)}.html" class="more">&#171; More &#187;</a>
         </div>
     </xsl:template>
 
     <xsl:template match="class|interface" mode="contents">
         <xsl:variable name="namespace" select="@namespace"/>
+
+        <xsl:variable name="link">
+            <xsl:call-template name="createLink">
+                <xsl:with-param name="value" select="full_name"/>
+            </xsl:call-template>
+        </xsl:variable>
 
         <a name="{full_name}" id="{full_name}"></a>
 
@@ -128,12 +144,12 @@
                 </xsl:apply-templates>
                 <li class="active">
                     <span class="divider">\</span>
-                    <a href="{$root}classes/db_{full_name}.html"><xsl:value-of select="name" /></a>
+                    <a href="{$root}classes/{substring($link, 2)}.html"><xsl:value-of select="name" /></a>
                 </li>
             </ul>
         </xsl:if>
 
-        <div href="{$root}classes/db_{full_name}.html" class="element {local-name()}">
+        <div href="{$root}classes/{substring($link, 2)}.html" class="element {local-name()}">
             <xsl:if test="docblock/description">
                 <p class="short_description"><xsl:value-of select="docblock/description" disable-output-escaping="yes"/></p>
             </xsl:if>

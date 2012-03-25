@@ -13,7 +13,12 @@
 
         <li>
             <xsl:if test="$element_count > 0">
-                <a href="{$root}packages/db_{@full_name}.html" title="{@name}"><i class="icon-folder-open"></i> <xsl:value-of select="@name" /></a>
+                <xsl:variable name="link">
+                    <xsl:call-template name="createLink">
+                        <xsl:with-param name="value" select="@full_name"/>
+                    </xsl:call-template>
+                </xsl:variable>
+                <a href="{$root}packages/{$link}.html" title="{@name}"><i class="icon-folder-open"></i> <xsl:value-of select="@name" /></a>
             </xsl:if>
 
             <xsl:if test="$element_count = 0">
