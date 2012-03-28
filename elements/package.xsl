@@ -57,7 +57,7 @@
                     |/project/file/function[@package=$fqnn]
                     |/project/file/class[@package=$fqnn]
                     |/project/file/interface[@package=$fqnn]
-                    |package) > 0"
+                    |package) = 0"
                 >
                     <div class="alert alert-info">This package does not contain any documentable elements</div>
                 </xsl:if>

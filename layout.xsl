@@ -65,7 +65,7 @@
         </xsl:variable>
 
         <!-- only show those packages that actually have visible contents -->
-        <xsl:if test="/project/file/constant[@package=$name]|/project/file/function[@package=$name]|/project/file/class[@package=$name]|/project/file/interface[@package=$name]">
+        <xsl:if test="/project/package[@name=$name]/package|/project/file/constant[@package=$name]|/project/file/function[@package=$name]|/project/file/class[@package=$name]|/project/file/interface[@package=$name]">
             <li>
                 <a href="{$root}packages/{$link}.html">
                     <i class="icon-folder-open"></i>&#160;<xsl:value-of select="@full_name" />
@@ -99,7 +99,7 @@
                                             <xsl:sort select="@full_name" />
                                         </xsl:apply-templates>
                                     </xsl:if>
-                                    <xsl:if test="/project/package/subpackage or count(/project/package[@name != '']) > 1">
+                                    <xsl:if test="/project/package/package or count(/project/package[@name != '']) > 1">
                                         <li><a>Packages</a></li>
                                         <xsl:apply-templates select="/project/package" mode="menu">
                                             <xsl:sort select="@name" />
