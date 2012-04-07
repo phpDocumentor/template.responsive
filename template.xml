@@ -2,7 +2,7 @@
 <template>
   <author>Mike van Riel</author>
   <email>mike.vanriel@naenius.com</email>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <copyright>Mike van Riel 2012</copyright>
   <description><![CDATA[
       This is the 'Responsive' look and feel for phpDocumentor.

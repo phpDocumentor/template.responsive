@@ -1,0 +1,7 @@
+{
+    "name": "phpdocumentor/template.responsive",
+    "license": "MIT",
+    "require": {
+        "ext-xsl": "*"
+    }
+}
