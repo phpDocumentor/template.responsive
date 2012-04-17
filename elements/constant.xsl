@@ -43,7 +43,7 @@
                 <div>
                     <xsl:attribute name="class">
                         <xsl:if test="docblock/tag[@name='example']">span4</xsl:if>
-                        <xsl:if test="not(docblock/tag[@name='example'])">span8</xsl:if>
+                        <xsl:if test="not(docblock/tag[@name='example'])">detail-description</xsl:if>
                     </xsl:attribute>
                     <p class="long_description">
                         <xsl:value-of select="docblock/long-description" disable-output-escaping="yes" />
