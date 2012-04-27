@@ -241,6 +241,11 @@ div.element .table th
     text-transform: capitalize;
 }
 
+div.detail-description
+{
+    padding-left: 30px;
+}
+
 body.invert
 {
     background: white;
