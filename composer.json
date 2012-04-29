@@ -2,7 +2,11 @@
     "name": "phpdocumentor/template.responsive",
     "type": "phpdocumentor-template",
     "license": "MIT",
+    "repositories":[
+        { "type":"git", "url":"http://github.com/phpDocumentor/TemplateInstaller" },
+    ],
     "require": {
-        "ext-xsl": "*"
+        "ext-xsl": "*",
+        "phpdocumentor/template-installer":"dev-master"
     }
 }
