@@ -3,7 +3,7 @@
     "type": "phpdocumentor-template",
     "license": "MIT",
     "repositories":[
-        { "type":"git", "url":"http://github.com/phpDocumentor/TemplateInstaller" },
+        { "type":"git", "url":"http://github.com/phpDocumentor/TemplateInstaller" }
     ],
     "require": {
         "ext-xsl": "*",
