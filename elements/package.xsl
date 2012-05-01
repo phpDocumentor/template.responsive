@@ -46,7 +46,7 @@
         >
             <ul class="breadcrumb">
                 <li>
-                    <a href="{$root}index.html"><i class="icon-folder-open"></i></a>
+                    <a href="{$root}"><i class="icon-folder-open"></i></a>
                     <span class="divider">\</span>
                 </li>
                 <xsl:apply-templates select="." mode="breadcrumb"/>
