@@ -136,7 +136,7 @@
         <xsl:if test="$namespace != 'default'">
             <ul class="breadcrumb">
                 <li>
-                    <a href="{$root}index.html"><i class="icon-custom icon-class"></i></a>
+                    <a href="{$root}"><i class="icon-custom icon-class"></i></a>
                     <span class="divider">\</span>
                 </li>
                 <xsl:apply-templates select="//namespace[@full_name=$namespace]" mode="breadcrumb">

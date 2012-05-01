@@ -81,7 +81,7 @@
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                         <span class="icon-bar"></span> <span class="icon-bar"></span>
                         <span class="icon-bar"></span> </a>
-                    <a class="brand" href="{$root}index.html">
+                    <a class="brand" href="{$root}">
                         <xsl:value-of select="$title" disable-output-escaping="yes"/>
                         <xsl:if test="$title = ''">phpDocumentor</xsl:if>
                     </a>
