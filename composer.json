@@ -7,6 +7,6 @@
     ],
     "require": {
         "ext-xsl": "*",
-        "phpdocumentor/template-installer":"dev-master"
+        "phpdocumentor/template-installer":"*"
     }
 }
