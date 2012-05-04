@@ -133,21 +133,19 @@
 
         <a name="{full_name}" id="{full_name}"></a>
 
-        <xsl:if test="$namespace != 'default'">
-            <ul class="breadcrumb">
-                <li>
-                    <a href="{$root}index.html"><i class="icon-custom icon-class"></i></a>
-                    <span class="divider">\</span>
-                </li>
-                <xsl:apply-templates select="//namespace[@full_name=$namespace]" mode="breadcrumb">
-                    <xsl:with-param name="active" select="false()"/>
-                </xsl:apply-templates>
-                <li class="active">
-                    <span class="divider">\</span>
-                    <a href="{$root}classes/{substring($link, 2)}.html"><xsl:value-of select="name" /></a>
-                </li>
-            </ul>
-        </xsl:if>
+        <ul class="breadcrumb">
+            <li>
+                <a href="{$root}index.html"><i class="icon-custom icon-class"></i></a>
+                <span class="divider">\</span>
+            </li>
+            <xsl:apply-templates select="//namespace[@full_name=$namespace]" mode="breadcrumb">
+                <xsl:with-param name="active" select="false()"/>
+            </xsl:apply-templates>
+            <li class="active">
+                <span class="divider">\</span>
+                <a href="{$root}classes/{substring($link, 2)}.html"><xsl:value-of select="name" /></a>
+            </li>
+        </ul>
 
         <div href="{$root}classes/{substring($link, 2)}.html" class="element {local-name()}">
             <xsl:if test="docblock/description">
