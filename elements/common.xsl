@@ -129,7 +129,7 @@
         <tr>
             <th><xsl:value-of select="@name"/></th>
             <td>
-                <a href="{$root}/packages/{$link}.html">
+                <a href="{$root}packages/{$link}.html">
                     <xsl:value-of select="@description" />
                 </a>
             </td>
