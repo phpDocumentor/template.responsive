@@ -1,10 +1,10 @@
 {
     "name": "phpdocumentor/template-responsive",
     "type": "phpdocumentor-template",
+    "description": "Responsive modern template for phpDocumentor",
+    "keywords": ["documentation", "template", "phpdoc"],
+    "homepage": "http://www.phpdoc.org",
     "license": "MIT",
-    "repositories":[
-        { "type":"git", "url":"http://github.com/phpDocumentor/UnifiedAssetInstaller" }
-    ],
     "require": {
         "ext-xsl": "*",
         "phpdocumentor/unified-asset-installer": "dev-master"
