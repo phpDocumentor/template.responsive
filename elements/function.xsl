@@ -49,7 +49,7 @@
             <xsl:variable name="name" select="name"/>
             <xsl:variable name="tag" select="../docblock/tag[@name='param' and @variable=$name]" />
             <h4><xsl:value-of select="name"/></h4>
-            <code><xsl:apply-templates select="$tag/type" /></code>
+            <xsl:apply-templates select="$tag/type" mode="contents" />
             <xsl:value-of select="$tag/@description" disable-output-escaping="yes" />
         </div>
     </xsl:template>
