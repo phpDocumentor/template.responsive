@@ -83,6 +83,10 @@ a.brand, h2, .hero-unit h1
     background: white;
 }
 
+.dropdown-menu a{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 h2
 {
     border-bottom:  1px dashed #55A72F;

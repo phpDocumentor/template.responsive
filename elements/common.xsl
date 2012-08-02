@@ -104,7 +104,7 @@
     <xsl:template match="tag" mode="tabular">
         <tr>
             <th><xsl:value-of select="@name"/></th>
-            <td><xsl:value-of select="@description"/></td>
+            <td><xsl:value-of select="@description" disable-output-escaping="yes"/></td>
         </tr>
     </xsl:template>
 
