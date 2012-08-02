@@ -447,6 +447,11 @@ div.labels
     font-weight: bold;
 }
 
+.iviewer_common
+{
+    z-index: 100;
+}
+
 @media (min-width: 980px)
 {
     a[name]
