@@ -152,21 +152,24 @@
 
     <xsl:template match="namespace|package" mode="breadcrumb">
         <xsl:param name="active" select="'true'"/>
-        <xsl:if test="local-name(..) = local-name()">
-            <xsl:apply-templates select=".." mode="breadcrumb">
-                <xsl:with-param name="active" select="'false'" />
-            </xsl:apply-templates>
-            <span class="divider">\</span>
-        </xsl:if>
 
         <xsl:variable name="link">
             <xsl:call-template name="createLink">
                 <xsl:with-param name="value" select="@full_name" />
             </xsl:call-template>
         </xsl:variable>
+        
+        <xsl:if test="local-name(..) = local-name()">
+            <xsl:apply-templates select=".." mode="breadcrumb">
+                <xsl:with-param name="active" select="'false'" />
+            </xsl:apply-templates>
+        </xsl:if>
 
         <li>
             <xsl:if test="$active = 'true'"><xsl:attribute name="class">active</xsl:attribute></xsl:if>
+            <xsl:if test="local-name(..) = local-name()">
+                <span class="divider">\</span>
+            </xsl:if>
             <a href="{$root}{local-name()}s/{$link}.html"><xsl:value-of select="@name" /></a>
         </li>
     </xsl:template>

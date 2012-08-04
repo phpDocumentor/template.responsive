@@ -1,5 +1,6 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:date="http://exslt.org/dates-and-times">
+    xmlns:date="http://exslt.org/dates-and-times"
+    extension-element-prefixes="date">
     <xsl:output indent="yes" method="html" />
 
     <xsl:template name="string-replace-all">
