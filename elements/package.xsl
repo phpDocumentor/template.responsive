@@ -48,8 +48,8 @@
                 <li>
                     <a href="{$root}index.html"><i class="icon-folder-open"></i></a>
                     <span class="divider">\</span>
+                    <xsl:apply-templates select="." mode="breadcrumb"/>
                 </li>
-                <xsl:apply-templates select="." mode="breadcrumb"/>
             </ul>
 
             <div class="package-indent">

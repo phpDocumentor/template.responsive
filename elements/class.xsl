@@ -2,7 +2,7 @@
     <xsl:output indent="yes" method="html" />
 
     <!-- Sidebar index for classes and interfaces -->
-    <xsl:template match="/project/file/class|/project/file/interface" mode="sidebar">
+        <xsl:template match="/project/file/class|/project/file/interface" mode="sidebar">
         <!-- Visibility toggles -->
         <span class="btn-group visibility" data-toggle="buttons-checkbox">
           <button class="btn public active" title="Show public elements">Public</button>
@@ -18,52 +18,62 @@
 
         <ul class="side-nav nav nav-list">
             <xsl:if test="method">
-                <li class="nav-header"><i class="icon-custom icon-method"></i>&#160;Methods</li>
-                <xsl:apply-templates select="method[@visibility != 'protected' and @visibility != 'private']" mode="sidebar">
-                    <xsl:sort select="name" />
-                </xsl:apply-templates>
+                <li class="nav-header">
+                    <i class="icon-custom icon-method"></i>&#160;Methods
+                    <xsl:apply-templates select="method[@visibility != 'protected' and @visibility != 'private']" mode="sidebar">
+                        <xsl:sort select="name" />
+                    </xsl:apply-templates>
+                </li>
             </xsl:if>
 
             <xsl:if test="method[@visibility = 'protected']">
-                <li class="nav-header protected">&#187; Protected</li>
-                <xsl:apply-templates select="method[@visibility = 'protected']" mode="sidebar">
-                    <xsl:sort select="name" />
-                </xsl:apply-templates>
+                <li class="nav-header protected">&#187; Protected
+                    <xsl:apply-templates select="method[@visibility = 'protected']" mode="sidebar">
+                        <xsl:sort select="name" />
+                    </xsl:apply-templates>
+                </li>
             </xsl:if>
 
             <xsl:if test="method[@visibility = 'private']">
-                <li class="nav-header private">&#187; Private</li>
-                <xsl:apply-templates select="method[@visibility = 'private']" mode="sidebar">
-                    <xsl:sort select="name" />
-                </xsl:apply-templates>
+                <li class="nav-header private">&#187; Private
+                    <xsl:apply-templates select="method[@visibility = 'private']" mode="sidebar">
+                        <xsl:sort select="name" />
+                    </xsl:apply-templates>
+                </li>
             </xsl:if>
 
             <xsl:if test="property">
-                <li class="nav-header"><i class="icon-custom icon-property"></i>&#160;Properties</li>
-                <xsl:apply-templates select="property[@visibility != 'protected' and @visibility != 'private']" mode="sidebar">
-                    <xsl:sort select="name" />
-                </xsl:apply-templates>
+                <li class="nav-header">
+                    <i class="icon-custom icon-property"></i>&#160;Properties
+                    <xsl:apply-templates select="property[@visibility != 'protected' and @visibility != 'private']" mode="sidebar">
+                        <xsl:sort select="name" />
+                    </xsl:apply-templates>
+                </li>
             </xsl:if>
 
             <xsl:if test="property[@visibility = 'protected']">
-                <li class="nav-header protected">&#187; Protected</li>
-                <xsl:apply-templates select="property[@visibility = 'protected']" mode="sidebar">
-                    <xsl:sort select="name" />
-                </xsl:apply-templates>
+                <li class="nav-header protected">&#187; Protected
+                    <xsl:apply-templates select="property[@visibility = 'protected']" mode="sidebar">
+                        <xsl:sort select="name" />
+                    </xsl:apply-templates>
+                </li>
             </xsl:if>
 
             <xsl:if test="property[@visibility = 'private']">
-                <li class="nav-header private">&#187; Private</li>
-                <xsl:apply-templates select="property[@visibility = 'private']" mode="sidebar">
-                    <xsl:sort select="name" />
-                </xsl:apply-templates>
+                <li class="nav-header private">&#187; Private
+                    <xsl:apply-templates select="property[@visibility = 'private']" mode="sidebar">
+                        <xsl:sort select="name" />
+                    </xsl:apply-templates>
+                </li>
             </xsl:if>
 
             <xsl:if test="constant">
-                <li class="nav-header"><i class="icon-custom icon-constant"></i>&#160;Constants</li>
-                <xsl:apply-templates select="constant" mode="sidebar">
-                    <xsl:sort select="name" />
-                </xsl:apply-templates>
+                <li class="nav-header">
+                    <i class="icon-custom icon-constant"></i>&#160;Constants
+                    <xsl:apply-templates select="constant" mode="sidebar">
+                        <xsl:sort select="name" />
+                    </xsl:apply-templates>
+                </li>
             </xsl:if>
         </ul>
     </xsl:template>
@@ -113,8 +123,8 @@
             </xsl:call-template>
         </xsl:variable>
 
-        <a name="{name}" id="{name}" />
-        <div class="element ajax clickable {local-name()}" href="{$root}classes/{substring($filename, 2)}.html">
+        <a id="{name}" />
+        <div class="element ajax clickable {local-name()}">
             <h1><xsl:value-of select="name"/><a href="{$root}classes/{substring($filename, 2)}.html">¶</a></h1>
             <p class="short_description"><xsl:value-of select="docblock/description" disable-output-escaping="yes"/></p>
             <div class="details collapse"></div>
