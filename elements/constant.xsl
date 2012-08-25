@@ -26,9 +26,12 @@
     </xsl:template>
 
     <xsl:template match="property|constant" mode="contents">
-        <a name="{name}" id="{name}">&#160;</a>
+        <a id="{name}">&#160;</a>
+        <xsl:variable name="name">
+            <xsl:apply-templates select="name" />
+        </xsl:variable>
         <div class="element clickable {local-name(.)} {@visibility} {name}" data-toggle="collapse" data-target=".{name} .collapse">
-            <h2><xsl:apply-templates select="name" /></h2>
+            <h2><xsl:value-of select="string($name)" /></h2>
             <xsl:apply-templates select="name" mode="signature" />
             <div class="labels">
                 <xsl:if test="docblock/tag[@name='api']">
@@ -45,9 +48,9 @@
                         <xsl:if test="docblock/tag[@name='example']">span4</xsl:if>
                         <xsl:if test="not(docblock/tag[@name='example'])">detail-description</xsl:if>
                     </xsl:attribute>
-                    <p class="long_description">
+                    <div class="long_description">
                         <xsl:value-of select="docblock/long-description" disable-output-escaping="yes" />
-                    </p>
+                    </div>
 
                     <xsl:if test="count(docblock/tag[@name != 'var']) > 0">
                         <table class="table table-bordered">

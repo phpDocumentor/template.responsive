@@ -55,7 +55,7 @@
     </xsl:template>
 
     <xsl:template match="function|method" mode="contents">
-        <a name="{name}" id="{name}"></a>
+        <a id="{name}"></a>
         <div class="element clickable {local-name(.)} {@visibility} {name}" data-toggle="collapse" data-target=".{name} .collapse">
             <h2><xsl:apply-templates select="name" /></h2>
             <xsl:apply-templates select="name" mode="signature" />
@@ -75,9 +75,9 @@
                         <xsl:if test="not(docblock/tag[@name='example'])">detail-description</xsl:if>
                     </xsl:attribute>
 
-                    <p class="long_description">
+                    <div class="long_description">
                         <xsl:value-of select="docblock/long-description" disable-output-escaping="yes" />
-                    </p>
+                    </div>
 
                     <xsl:if test="count(docblock/tag[@name != 'return' and @name != 'param' and @name != 'throws' and @name != 'throw']) > 0">
                         <table class="table table-bordered">

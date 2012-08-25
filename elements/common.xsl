@@ -95,7 +95,10 @@
             </xsl:attribute>
 
             <a href="#{name}" title="{name} :: {docblock/description}">
-                <span class="description"><xsl:apply-templates select="name" /></span>
+                <xsl:variable name="name">
+                    <xsl:apply-templates select="name" />
+                </xsl:variable>
+                <span class="description"><xsl:value-of select="string($name)" /></span>
                 <pre><xsl:value-of select="name" /><xsl:if test="local-name() = 'method'">()</xsl:if></pre>
             </a>
         </li>
