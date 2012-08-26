@@ -95,10 +95,18 @@
             </xsl:attribute>
 
             <a href="#{name}" title="{name} :: {docblock/description}">
-                <xsl:variable name="name">
+                <xsl:variable name="desc">
                     <xsl:apply-templates select="name" />
                 </xsl:variable>
-                <span class="description"><xsl:value-of select="string($name)" /></span>
+                <span class="description">
+                    <xsl:choose>
+                        <xsl:when test="name()='property'">
+                            <xsl:value-of select="substring-after(substring-before(string($desc), '&lt;/p&gt;'), '&lt;p&gt;')"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$desc" />
+                        </xsl:otherwise>
+                    </xsl:choose></span>
                 <pre><xsl:value-of select="name" /><xsl:if test="local-name() = 'method'">()</xsl:if></pre>
             </a>
         </li>

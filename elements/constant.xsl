@@ -27,11 +27,20 @@
 
     <xsl:template match="property|constant" mode="contents">
         <a id="{name}">&#160;</a>
-        <xsl:variable name="name">
+        <xsl:variable name="desc">
             <xsl:apply-templates select="name" />
         </xsl:variable>
         <div class="element clickable {local-name(.)} {@visibility} {name}" data-toggle="collapse" data-target=".{name} .collapse">
-            <h2><xsl:value-of select="string($name)" /></h2>
+            <h2>
+                <xsl:choose>
+                    <xsl:when test="name()='property'">
+                        <xsl:value-of select="substring-after(substring-before(string($desc), '&lt;/p&gt;'), '&lt;p&gt;')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$desc" />
+                    </xsl:otherwise>
+                </xsl:choose>
+            </h2>
             <xsl:apply-templates select="name" mode="signature" />
             <div class="labels">
                 <xsl:if test="docblock/tag[@name='api']">
