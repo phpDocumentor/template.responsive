@@ -389,6 +389,7 @@ div.element div.subelement
 {
     margin-left:    10px;
     padding-bottom: 5px;
+    clear: both;
 }
 
 pre code
