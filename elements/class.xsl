@@ -20,59 +20,73 @@
             <xsl:if test="method">
                 <li class="nav-header">
                     <i class="icon-custom icon-method"></i>&#160;Methods
-                    <xsl:apply-templates select="method[@visibility != 'protected' and @visibility != 'private']" mode="sidebar">
-                        <xsl:sort select="name" />
-                    </xsl:apply-templates>
+                    <ul>
+                        <xsl:apply-templates select="method[@visibility != 'protected' and @visibility != 'private']" mode="sidebar">
+                            <xsl:sort select="name" />
+                        </xsl:apply-templates>
+                    </ul>
                 </li>
             </xsl:if>
 
             <xsl:if test="method[@visibility = 'protected']">
                 <li class="nav-header protected">&#187; Protected
-                    <xsl:apply-templates select="method[@visibility = 'protected']" mode="sidebar">
-                        <xsl:sort select="name" />
-                    </xsl:apply-templates>
+                    <ul>
+                        <xsl:apply-templates select="method[@visibility = 'protected']" mode="sidebar">
+                            <xsl:sort select="name" />
+                        </xsl:apply-templates>
+                    </ul>
                 </li>
             </xsl:if>
 
             <xsl:if test="method[@visibility = 'private']">
                 <li class="nav-header private">&#187; Private
-                    <xsl:apply-templates select="method[@visibility = 'private']" mode="sidebar">
-                        <xsl:sort select="name" />
-                    </xsl:apply-templates>
+                    <ul>
+                        <xsl:apply-templates select="method[@visibility = 'private']" mode="sidebar">
+                            <xsl:sort select="name" />
+                        </xsl:apply-templates>
+                    </ul>
                 </li>
             </xsl:if>
 
             <xsl:if test="property">
                 <li class="nav-header">
                     <i class="icon-custom icon-property"></i>&#160;Properties
-                    <xsl:apply-templates select="property[@visibility != 'protected' and @visibility != 'private']" mode="sidebar">
-                        <xsl:sort select="name" />
-                    </xsl:apply-templates>
+                    <ul>
+                        <xsl:apply-templates select="property[@visibility != 'protected' and @visibility != 'private']" mode="sidebar">
+                            <xsl:sort select="name" />
+                        </xsl:apply-templates>
+                    </ul>
                 </li>
             </xsl:if>
 
             <xsl:if test="property[@visibility = 'protected']">
                 <li class="nav-header protected">&#187; Protected
-                    <xsl:apply-templates select="property[@visibility = 'protected']" mode="sidebar">
-                        <xsl:sort select="name" />
-                    </xsl:apply-templates>
+                    <ul>
+                        <xsl:apply-templates select="property[@visibility = 'protected']" mode="sidebar">
+                            <xsl:sort select="name" />
+                        </xsl:apply-templates>
+                    </ul>
                 </li>
             </xsl:if>
 
             <xsl:if test="property[@visibility = 'private']">
                 <li class="nav-header private">&#187; Private
-                    <xsl:apply-templates select="property[@visibility = 'private']" mode="sidebar">
-                        <xsl:sort select="name" />
-                    </xsl:apply-templates>
+                    <ul>
+                        <xsl:apply-templates select="property[@visibility = 'private']" mode="sidebar">
+                            <xsl:sort select="name" />
+                        </xsl:apply-templates>
+                    </ul>
                 </li>
             </xsl:if>
 
             <xsl:if test="constant">
                 <li class="nav-header">
                     <i class="icon-custom icon-constant"></i>&#160;Constants
-                    <xsl:apply-templates select="constant" mode="sidebar">
-                        <xsl:sort select="name" />
-                    </xsl:apply-templates>
+                    <ul>
+                        <xsl:apply-templates select="constant" mode="sidebar">
+                            <xsl:sort select="name" />
+                        </xsl:apply-templates>
+                    </ul>
                 </li>
             </xsl:if>
         </ul>
@@ -122,26 +136,26 @@
                 <xsl:with-param name="value" select="full_name"/>
             </xsl:call-template>
         </xsl:variable>
+        <xsl:variable name="link" xml:space="preserve"><xsl:value-of select="$root" />classes/<xsl:value-of select="substring($filename, 2)" />.html</xsl:variable>
 
-        <a id="{name}" />
-        <div class="element ajax clickable {local-name()}">
-            <h1><xsl:value-of select="name"/><a href="{$root}classes/{substring($filename, 2)}.html">¶</a></h1>
+        <div id="{name}" class="element ajax clickable {local-name()}">
+            <h1><xsl:value-of select="name"/><a href="{$link}">¶</a></h1>
             <p class="short_description"><xsl:value-of select="docblock/description" disable-output-escaping="yes"/></p>
             <div class="details collapse"></div>
-            <a href="{$root}classes/{substring($filename, 2)}.html" class="more">&#171; More &#187;</a>
+            <a href="{$link}" class="more">&#171; More &#187;</a>
         </div>
     </xsl:template>
 
     <xsl:template match="class|interface" mode="contents">
         <xsl:variable name="namespace" select="@namespace"/>
-
-        <xsl:variable name="link">
+        <xsl:variable name="filename">
             <xsl:call-template name="createLink">
                 <xsl:with-param name="value" select="full_name"/>
             </xsl:call-template>
         </xsl:variable>
+        <xsl:variable name="link" xml:space="preserve"><xsl:value-of select="$root" />classes/<xsl:value-of select="substring($filename, 2)" />.html</xsl:variable>
 
-        <a name="{full_name}" id="{full_name}"></a>
+        <a id="{full_name}"></a>
 
         <ul class="breadcrumb">
             <li>
@@ -153,18 +167,18 @@
             </xsl:apply-templates>
             <li class="active">
                 <span class="divider">\</span>
-                <a href="{$root}classes/{substring($link, 2)}.html"><xsl:value-of select="name" /></a>
+                <a href="{$link}"><xsl:value-of select="name" /></a>
             </li>
         </ul>
 
-        <div href="{$root}classes/{substring($link, 2)}.html" class="element {local-name()}">
+        <div class="element {local-name()}">
             <xsl:if test="docblock/description">
                 <p class="short_description"><xsl:value-of select="docblock/description" disable-output-escaping="yes"/></p>
             </xsl:if>
 
             <div class="details">
                 <xsl:if test="docblock/long-description">
-                <p class="long_description"><xsl:value-of select="docblock/long-description" disable-output-escaping="yes"/></p>
+                <div class="long_description"><xsl:value-of select="docblock/long-description" disable-output-escaping="yes"/></div>
                 </xsl:if>
 
                 <xsl:if test="count(docblock/tag) > 0">
