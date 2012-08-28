@@ -108,7 +108,7 @@
         </tr>
     </xsl:template>
 
-    <xsl:template match="tag[@name = 'license' or @name = 'link' or @name = 'author']" mode="tabular">
+    <xsl:template match="tag[@name = 'license' or @name = 'link' or @name = 'see' or @name = 'author']" mode="tabular">
         <tr>
             <th><xsl:value-of select="@name"/></th>
             <td>
@@ -158,7 +158,7 @@
                 <xsl:with-param name="value" select="@full_name" />
             </xsl:call-template>
         </xsl:variable>
-        
+
         <xsl:if test="local-name(..) = local-name()">
             <xsl:apply-templates select=".." mode="breadcrumb">
                 <xsl:with-param name="active" select="'false'" />
