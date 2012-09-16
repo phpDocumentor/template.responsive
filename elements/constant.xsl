@@ -26,20 +26,17 @@
     </xsl:template>
 
     <xsl:template match="property|constant" mode="contents">
-        <a id="{name}">&#160;</a>
+        <a id="{local-name(.)}_{translate(name, '$', '')}">&#160;</a>
         <xsl:variable name="desc">
             <xsl:apply-templates select="name" />
         </xsl:variable>
-        <div class="element clickable {local-name(.)} {@visibility} {name}" data-toggle="collapse" data-target=".{name} .collapse">
+        <div class="element clickable {local-name(.)} {@visibility} {local-name(.)}_{translate(name, '$', '')}" data-toggle="collapse" data-target=".{local-name(.)}_{translate(name, '$', '')} .collapse">
             <h2>
-                <xsl:choose>
-                    <xsl:when test="name()='property'">
-                        <xsl:value-of select="substring-after(substring-before(string($desc), '&lt;/p&gt;'), '&lt;p&gt;')"/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:value-of select="$desc" />
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="not($desc)">
+                    <xsl:value-of select="name"/>
+                </xsl:if>
+
+                <xsl:value-of select="$desc" />
             </h2>
             <xsl:apply-templates select="name" mode="signature" />
             <div class="labels">
