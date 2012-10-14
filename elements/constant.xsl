@@ -36,7 +36,14 @@
                     <xsl:value-of select="name"/>
                 </xsl:if>
 
-                <xsl:value-of select="$desc" />
+                <xsl:choose>
+                    <xsl:when test="name()='property'">
+                        <xsl:value-of select="substring-after(substring-before(string($desc), '&lt;/p&gt;'), '&lt;p&gt;')"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$desc" />
+                    </xsl:otherwise>
+                </xsl:choose>
             </h2>
             <xsl:apply-templates select="name" mode="signature" />
             <div class="labels">
