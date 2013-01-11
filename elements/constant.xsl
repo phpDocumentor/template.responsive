@@ -38,7 +38,14 @@
 
                 <xsl:choose>
                     <xsl:when test="name()='property'">
-                        <xsl:value-of select="substring-after(substring-before(string($desc), '&lt;/p&gt;'), '&lt;p&gt;')"/>
+                        <xsl:choose>
+                            <xsl:when test="contains($desc, '&lt;p&gt;')">
+                                <xsl:value-of select="substring-after(substring-before(string($desc), '&lt;/p&gt;'), '&lt;p&gt;')"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$desc" />
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="$desc" />
