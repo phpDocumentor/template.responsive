@@ -84,7 +84,7 @@
     </xsl:template>
 
     <!-- Property/Constant list item in the sidebar -->
-    <xsl:template match="function|method|property|constant|class|interface" mode="sidebar">
+    <xsl:template match="method" mode="sidebar">
         <li>
             <xsl:attribute name="class">
                 <xsl:value-of select="local-name()"/>
@@ -94,7 +94,45 @@
                 <xsl:if test="inherited_from">inherited</xsl:if>
             </xsl:attribute>
 
-            <a href="#{local-name(.)}_{translate(name, '$', '')}" title="{name} :: {docblock/description}">
+			<xsl:variable name="tooltip">
+			    <xsl:value-of select="name"/>
+				<xsl:text>()</xsl:text>
+				<xsl:if test="docblock/description">
+					<xsl:text> :: </xsl:text>
+					<xsl:value-of select="docblock/description"/>
+				</xsl:if>	
+			</xsl:variable>
+
+            <a href="#{local-name(.)}_{translate(name, '$', '')}" title="{$tooltip}">
+                <xsl:variable name="desc">
+                    <xsl:apply-templates select="name" />
+                </xsl:variable>
+                <span class="description">
+                    <xsl:choose>
+                        <xsl:when test="name()='property'">
+                            <xsl:value-of select="substring-after(substring-before(string($desc), '&lt;/p&gt;'), '&lt;p&gt;')"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="$desc" />
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </span>
+                <pre><xsl:value-of select="name" /><xsl:if test="local-name() = 'method'">()</xsl:if></pre>
+            </a>
+        </li>
+    </xsl:template>
+
+    <xsl:template match="function|property|constant|class|interface" mode="sidebar">
+        <li>
+            <xsl:attribute name="class">
+                <xsl:value-of select="local-name()"/>
+                <xsl:text> </xsl:text>
+                <xsl:value-of select="@visibility" />
+                <xsl:text> </xsl:text>
+                <xsl:if test="inherited_from">inherited</xsl:if>
+            </xsl:attribute>
+
+            <a href="#{local-name(.)}_{translate(name, '$', '')}" title="{name}() :: {docblock/description}">
                 <xsl:variable name="desc">
                     <xsl:apply-templates select="name" />
                 </xsl:variable>
