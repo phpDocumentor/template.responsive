@@ -163,7 +163,7 @@
             <th><xsl:value-of select="@name"/></th>
             <td>
                 <a href="{@link}">
-                    <xsl:value-of select="@description" />
+                    <xsl:value-of select="@description" disable-output-escaping="yes" />
                 </a>
             </td>
         </tr>
