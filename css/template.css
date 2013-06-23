@@ -250,6 +250,10 @@ div.detail-description
     padding-left: 30px;
 }
 
+div.detail-description table th {
+    vertical-align: top;
+}
+
 body.invert
 {
     background: white;

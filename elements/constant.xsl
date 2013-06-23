@@ -60,6 +60,9 @@
                 <xsl:if test="inherited_from">
                     <span class="label">Inherited</span>
                 </xsl:if>
+                <xsl:if test="@static='true' or docblock/tag[@name='static']">
+                    <span class="label">Static</span>
+                </xsl:if>
             </div>
 
             <div class="row collapse">
