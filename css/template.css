@@ -442,7 +442,7 @@ div.labels
     font-size: 13px;
 }
 
-.detail_description code {
+.detail-description code {
     white-space: pre;
     display:     inline-block;
     padding:     10px;
