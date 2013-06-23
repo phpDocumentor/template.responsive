@@ -16,6 +16,10 @@ a
     color: #55A72F;
 }
 
+td p:last-of-type {
+    margin: 0;
+}
+
 li.l0, li.l1, li.l2, li.l3, li.l5, li.l6, li.l7, li.l8
 {
     list-style-type: decimal;
