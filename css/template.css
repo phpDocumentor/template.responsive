@@ -2,7 +2,7 @@
 @import url(bootstrap-responsive.css);
 @import url(prettify.css);
 @import url(jquery.iviewer.css);
-@import url(http://fonts.googleapis.com/css?family=Crimson+Text|Philosopher|Forum);
+@import url(http://fonts.googleapis.com/css?family=Forum);
 
 body
 {
@@ -124,11 +124,10 @@ h2:first-of-type
 
 .hero-unit h1
 {
-    text-align: center;
     font-weight: normal;
     text-align:  center;
     color:       white;
-    text-shadow: black 0px 0px 15px;
+    text-shadow: black 0 0 15px;
 }
 
 .hero-unit h2
@@ -320,7 +319,7 @@ ul.side-nav li.view-simple pre
 
 ul.side-nav li.view-simple a
 {
-    padding-bottom: 0px;
+    padding-bottom: 0;
 }
 
 i.icon-custom
@@ -369,10 +368,6 @@ i.icon-interface { background-image: url('../img/icons/interface.png'); }
 
 div.element.property h1,
 i.icon-property  { background-image: url('../img/icons/property.png'); }
-
-i.icon-show-public    { background-image: url('../img/icons/visibility_public.png'); }
-i.icon-show-protected { background-image: url('../img/icons/visibility_protected.png'); }
-i.icon-show-private   { background-image: url('../img/icons/visibility_private.png'); }
 
 span.empty-namespace
 {
