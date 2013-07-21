@@ -6,6 +6,6 @@
     "homepage": "http://www.phpdoc.org",
     "license": "MIT",
     "require": {
-        "ext-xsl": "*",
+        "ext-xsl": "*"
     }
 }
