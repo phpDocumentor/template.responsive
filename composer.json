@@ -6,6 +6,7 @@
     "homepage": "http://www.phpdoc.org",
     "license": "MIT",
     "require": {
-        "ext-xsl": "*"
+        "ext-xsl": "*",
+        "phpdocumentor/unified-asset-installer": "~1.1"
     }
 }
