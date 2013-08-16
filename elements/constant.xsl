@@ -30,7 +30,7 @@
         <xsl:variable name="desc">
             <xsl:apply-templates select="name" />
         </xsl:variable>
-        <div class="element clickable {local-name(.)} {@visibility} {local-name(.)}_{translate(name, '$', '')}" data-toggle="collapse" data-target=".{local-name(.)}_{translate(name, '$', '')} .collapse">
+        <div class="element clickable {local-name(.)} {@visibility} {local-name(.)}_{translate(name, '$', '')}" data-toggle="collapse" data-target=".{local-name(.)}_{translate(name, '$', '')} .collapse" title="{@visibility}">
             <h2>
                 <xsl:if test="not($desc)">
                     <xsl:value-of select="name"/>
