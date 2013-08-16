@@ -29,6 +29,7 @@ function initializeContents()
     if (!$.browser.ipad) {
         $('.btn-group.visibility,.btn-group.view,.btn-group.type-filter')
             .tooltip({'placement':'bottom'});
+        $('.element').tooltip({'placement':'left'});
     }
 
     $('.btn-group.visibility,.btn-group.view,.btn-group.type-filter')
