@@ -437,6 +437,14 @@ div.labels
     font-size: 13px;
 }
 
+.nav-list .nav-header .side-nav-header
+{
+    font-weight: bold;
+    line-height: 18px;
+    color: #999999;
+    text-transform: uppercase;
+}
+
 .detail-description code {
     white-space: pre;
     display:     inline-block;
