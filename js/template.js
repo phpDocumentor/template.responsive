@@ -41,6 +41,7 @@ function initializeContents()
 
     $('.btn-group.visibility,.btn-group.view,.btn-group.type-filter')
         .show()
+        .css('display', 'inline-block')
         .find('button')
         .find('i').click(function(){ $(this).parent().click(); });
 
@@ -72,9 +73,6 @@ function initializeContents()
         $('.side-nav li.view-simple').removeClass('view-simple');
     }).button('toggle').click();
 
-    $('.view button.details').click(function(){
-        $('.side-nav li.view-simple').removeClass('view-simple');
-    }).button('toggle').click();
     $('.view button.simple').click(function(){
         $('.side-nav li').addClass('view-simple');
     });

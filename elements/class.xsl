@@ -4,16 +4,18 @@
     <!-- Sidebar index for classes and interfaces -->
         <xsl:template match="/project/file/class|/project/file/interface" mode="sidebar">
         <!-- Visibility toggles -->
-        <span class="btn-group visibility" data-toggle="buttons-checkbox">
-          <button class="btn public active" title="Show public elements">Public</button>
-          <button class="btn protected" title="Show protected elements">Protected</button>
-          <button class="btn private" title="Show private elements">Private</button>
-          <button class="btn inherited active" title="Show inherited elements">Inherited</button>
-        </span>
+        <div class="btn-toolbar">
+            <div class="btn-group visibility" data-toggle="buttons-checkbox">
+                <button class="btn public active" title="Show public elements">Public</button>
+                <button class="btn protected" title="Show protected elements">Protected</button>
+                <button class="btn private" title="Show private elements">Private</button>
+                <button class="btn inherited active" title="Show inherited elements">Inherited</button>
+            </div>
 
-        <div class="btn-group view pull-right" data-toggle="buttons-radio">
-          <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
-          <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+            <div class="btn-group view pull-right" data-toggle="buttons-radio">
+                <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
+                <button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+            </div>
         </div>
 
         <ul class="side-nav nav nav-list">
