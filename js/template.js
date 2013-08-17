@@ -25,6 +25,13 @@ function initializeContents()
             $(this).css('backgroundColor', 'white')}
         );
 
+    $("ul.side-nav.nav.nav-list li.nav-header").contents()
+        .filter(function(){return this.nodeType === 3})
+        .wrap('<span class="side-nav-header" />');
+
+    $("ul.side-nav.nav.nav-list li.nav-header span.side-nav-header")
+        .css("cursor", "pointer");
+
     // do not show tooltips on iPad; it will cause the user having to click twice
     if (!$.browser.ipad) {
         $('.btn-group.visibility,.btn-group.view,.btn-group.type-filter,.icon-custom')
@@ -70,6 +77,10 @@ function initializeContents()
     }).button('toggle').click();
     $('.view button.simple').click(function(){
         $('.side-nav li').addClass('view-simple');
+    });
+    
+    $('ul.side-nav.nav.nav-list li.nav-header span.side-nav-header').click(function(){
+        $(this).siblings('ul').collapse('toggle');
     });
 
 // sorting example
