@@ -19,7 +19,7 @@
         <ul class="side-nav nav nav-list">
             <xsl:if test="method">
                 <li class="nav-header">
-                    <i class="icon-custom icon-method"></i>&#160;Methods
+                    <i title="Methods" class="icon-custom icon-method"></i>&#160;Methods
                     <ul>
                         <xsl:apply-templates select="method[@visibility != 'protected' and @visibility != 'private']" mode="sidebar">
                             <xsl:sort select="name" />
@@ -50,7 +50,7 @@
 
             <xsl:if test="property">
                 <li class="nav-header">
-                    <i class="icon-custom icon-property"></i>&#160;Properties
+                    <i title="Properties" class="icon-custom icon-property"></i>&#160;Properties
                     <ul>
                         <xsl:apply-templates select="property[@visibility != 'protected' and @visibility != 'private']" mode="sidebar">
                             <xsl:sort select="name" />
@@ -81,7 +81,7 @@
 
             <xsl:if test="constant">
                 <li class="nav-header">
-                    <i class="icon-custom icon-constant"></i>&#160;Constants
+                    <i title="Constants" class="icon-custom icon-constant"></i>&#160;Constants
                     <ul>
                         <xsl:apply-templates select="constant" mode="sidebar">
                             <xsl:sort select="name" />
@@ -159,7 +159,7 @@
 
         <ul class="breadcrumb">
             <li>
-                <a href="{$root}index.html"><i class="icon-custom icon-class"></i></a>
+                <a href="{$root}index.html"><i title="Classes" class="icon-custom icon-class"></i></a>
                 <span class="divider">\</span>
             </li>
             <xsl:apply-templates select="//namespace[@full_name=$namespace]" mode="breadcrumb">
@@ -188,7 +188,7 @@
                 </xsl:if>
 
                 <xsl:if test="method">
-                    <h3><i class="icon-custom icon-method"></i>&#160;Methods</h3>
+                    <h3><i title="Methods" class="icon-custom icon-method"></i>&#160;Methods</h3>
                     <xsl:apply-templates select="method" mode="contents">
                         <xsl:sort select="@visibility" order="descending"/>
                         <xsl:sort select="name"/>
@@ -196,7 +196,7 @@
                 </xsl:if>
 
                 <xsl:if test="property">
-                    <h3><i class="icon-custom icon-property"></i>&#160;Properties</h3>
+                    <h3><i title="Properties" class="icon-custom icon-property"></i>&#160;Properties</h3>
                     <xsl:apply-templates select="property" mode="contents">
                         <xsl:sort select="@visibility" order="descending" />
                         <xsl:sort select="name" />
@@ -204,7 +204,7 @@
                 </xsl:if>
 
                 <xsl:if test="constant">
-                    <h3><i class="icon-custom icon-constant"></i>&#160;Constants</h3>
+                    <h3><i title="Constants" class="icon-custom icon-constant"></i>&#160;Constants</h3>
                     <xsl:apply-templates select="constant" mode="contents">
                         <xsl:sort select="name" />
                     </xsl:apply-templates>
