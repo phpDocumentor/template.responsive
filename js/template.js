@@ -41,6 +41,7 @@ function initializeContents()
 
     $('.btn-group.visibility,.btn-group.view,.btn-group.type-filter')
         .show()
+        .css('display', 'inline-block')
         .find('button')
         .find('i').click(function(){ $(this).parent().click(); });
 
