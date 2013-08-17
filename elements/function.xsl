@@ -56,7 +56,7 @@
 
     <xsl:template match="function|method" mode="contents">
         <a id="{local-name(.)}_{name}"></a>
-        <div class="element clickable {local-name(.)} {@visibility} {local-name(.)}_{name}" data-toggle="collapse" data-target=".{local-name(.)}_{name} .collapse">
+        <div class="element clickable {local-name(.)} {@visibility} {local-name(.)}_{name}" data-toggle="collapse" data-target=".{local-name(.)}_{name} .collapse" title="{@visibility}">
             <h2><xsl:apply-templates select="name" /></h2>
             <xsl:apply-templates select="name" mode="signature" />
             <div class="labels">
