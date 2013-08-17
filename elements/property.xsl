@@ -23,6 +23,11 @@
         <pre>
             <xsl:value-of select="$name"/>
             <xsl:text>&#160;</xsl:text>
+			<xsl:if test="../default[.!='']">
+                <xsl:text>=&#160;</xsl:text>
+			    <xsl:value-of select="../default" disable-output-escaping="yes"/>
+				<xsl:text>&#160;</xsl:text>
+			</xsl:if>
             <xsl:apply-templates select="../docblock/tag[@name='var']" mode="signature">
                 <xsl:with-param name="exclude-link" select="$exclude-link"/>
             </xsl:apply-templates>
