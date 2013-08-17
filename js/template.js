@@ -27,7 +27,7 @@ function initializeContents()
 
     // do not show tooltips on iPad; it will cause the user having to click twice
     if (!$.browser.ipad) {
-        $('.btn-group.visibility,.btn-group.view,.btn-group.type-filter')
+        $('.btn-group.visibility,.btn-group.view,.btn-group.type-filter,.icon-custom')
             .tooltip({'placement':'bottom'});
     }
 
