@@ -26,7 +26,7 @@ function initializeContents()
         );
 
     $("ul.side-nav.nav.nav-list li.nav-header").contents()
-        .filter(function(){return this.nodeType === 3})
+        .filter(function(){return this.nodeType == 3 && $.trim($(this).text()).length > 0})
         .wrap('<span class="side-nav-header" />');
 
     $("ul.side-nav.nav.nav-list li.nav-header span.side-nav-header")
