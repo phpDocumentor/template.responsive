@@ -340,12 +340,6 @@ i.icon-custom
     display: none;
 }
 
-.btn-group.view
-{
-    margin-left: 20px;
-    margin-bottom: 20px;
-}
-
 .visibility button
 {
     height: 24px;
@@ -509,7 +503,7 @@ div.labels
     {
         font-size: 0.80em;
         margin-bottom: 7px;
-        display: block;
+        display: inline-block;
         float: right;
     }
 }
