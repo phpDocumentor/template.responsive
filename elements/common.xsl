@@ -81,6 +81,10 @@
             <xsl:with-param name="exclude-link" select="$exclude-link"/>
         </xsl:apply-templates>
         <xsl:value-of select="name"/>
+        <xsl:if test="default[.!='']">
+            <xsl:text>&#160;=&#160;</xsl:text>
+            <xsl:value-of select="default"/>
+        </xsl:if>
     </xsl:template>
 
     <!-- Property/Constant list item in the sidebar -->
