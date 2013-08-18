@@ -29,17 +29,17 @@
         </pre>
         
         <div class="row collapse">
-			<div class="detail-description">
-			    <h3>Default</h3>
-		        <div class="subelement argument">
-			        <xsl:if test="../default[.!='']">
-				        <code>
-			                <xsl:value-of select="../default" disable-output-escaping="yes"/>
-				        </code>
-			        </xsl:if>
-		        </div>
-			</div>
-		</div>
+            <div class="detail-description">
+                <h3>Default</h3>
+                <div class="subelement argument">
+                    <xsl:if test="../default[.!='']">
+                        <code>
+                            <xsl:value-of select="../default" disable-output-escaping="yes"/>
+                        </code>
+                    </xsl:if>
+                </div>
+            </div>
+        </div>
     </xsl:template>
 
 </xsl:stylesheet>
