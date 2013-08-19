@@ -37,7 +37,7 @@
                 </xsl:if>
 
                 <xsl:variable name="classes" select="/project/file/class[docblock/tag[@name='api']]"/>
-                <xsl:variable name="methods" select="/project/file/class[docblock/tag[@name='api']]/method[@visibility='public' and substring(name,1,2)!='__']|/project/file/class/method[@visibility='public' and docblock/tag[@name='api']]"/>
+                <xsl:variable name="methods" select="$classes/method[@visibility='public' and substring(name,1,2)!='__']|/project/file/class/method[@visibility='public' and docblock/tag[@name='api']]"/>
 
                 <xsl:if test="count($classes) + count($methods) > 0">
                 <div class="well">
