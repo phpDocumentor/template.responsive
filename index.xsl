@@ -15,34 +15,34 @@
         <div class="row">
             <div class="span7">
                 <xsl:if test="count(namespace[@name != 'default' and @name != '']) > 0">
-                <div class="well">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Namespaces</li>
-                        <xsl:apply-templates select="namespace" mode="menu">
-                            <xsl:sort select="@full_name" />
-                        </xsl:apply-templates>
-                    </ul>
-                </div>
+                    <div class="well">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">Namespaces</li>
+                            <xsl:apply-templates select="namespace" mode="menu">
+                                <xsl:sort select="@full_name" />
+                            </xsl:apply-templates>
+                        </ul>
+                    </div>
                 </xsl:if>
 
                 <xsl:if test="count(package[@name != '' and @name != 'default']) > 0">
-                <div class="well">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Packages</li>
-                        <xsl:apply-templates select="package" mode="menu">
-                            <xsl:sort select="@name"/>
-                        </xsl:apply-templates>
-                    </ul>
-                </div>
+                    <div class="well">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">Packages</li>
+                            <xsl:apply-templates select="package" mode="menu">
+                                <xsl:sort select="@name"/>
+                            </xsl:apply-templates>
+                        </ul>
+                    </div>
                 </xsl:if>
 
                 <xsl:variable name="classes" select="file/class[docblock/tag[@name='api']]"/>
                 <xsl:variable name="methods" select="$classes/method[@visibility='public' and substring(name,1,2)!='__']|file/class/method[@visibility='public' and docblock/tag[@name='api']]"/>
 
                 <xsl:if test="count($classes) + count($methods) > 0">
-                <div class="well">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Api</li>
+                    <div class="well">
+                        <ul class="nav nav-list">
+                            <li class="nav-header">Api</li>
 
                             <xsl:if test="count($classes) > 0">
                                 <li class="nav-header"><i class="icon-custom icon-class"></i> Public API Classes</li>
@@ -69,19 +69,17 @@
                                     <li><a href="classes/{$link}.html#{name}" title="{docblock/description}"><xsl:value-of select="../name" />.<xsl:value-of select="name" /></a></li>
                                 </xsl:for-each>
                             </xsl:if>
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
                 </xsl:if>
-
             </div>
+
             <div class="span5">
                 <div class="well">
                     <ul class="nav nav-list">
                         <li class="nav-header">Charts</li>
                         <li>
-                            <a href="{$root}graph_class.html">
-                                <i class="icon-list-alt"></i> Class inheritance diagram
-                            </a>
+                            <a href="{$root}graph_class.html"><i class="icon-list-alt"></i> Class inheritance diagram</a>
                         </li>
                     </ul>
                 </div>
