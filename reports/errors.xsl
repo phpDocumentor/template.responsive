@@ -20,14 +20,7 @@
                         </div>
                     </li>
                     <li class="nav-header">Navigation</li>
-                    <xsl:for-each select="$files">
-                        <li>
-                            <a href="#{@path}">
-                                <i class="icon-file"></i>
-                                <xsl:value-of select="@path"/>
-                            </a>
-                        </li>
-                    </xsl:for-each>
+                    <xsl:apply-templates select="$files" mode="sidebar-nav" />
                 </ul>
             </div>
 
@@ -42,69 +35,83 @@
                 </xsl:if>
 
                 <div id="marker-accordion">
-                    <xsl:for-each select="$files">
-                        <xsl:variable name="item" select="parse_markers/*" />
-
-                        <a name="{@path}" id="{@path}"></a>
-                        <h3>
-                            <i class="icon-file"></i>
-                            <xsl:value-of select="@path" />
-                            <small style="float: right;padding-right: 10px;">
-                                <xsl:value-of select="count($item)" />
-                            </small>
-                        </h3>
-                        <div>
-                            <table class="table markers table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Type</th>
-                                        <th>Line</th>
-                                        <th>Description</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <xsl:for-each select="$item">
-                                        <xsl:sort select="@line" data-type="number"/>
-                                        <tr>
-                                            <xsl:if test="name() = 'tag'">
-                                                <xsl:attribute name="class">
-                                                    <xsl:value-of select="@name"/>
-                                                </xsl:attribute>
-                                                <td>
-                                                    <xsl:value-of select="@name" />
-                                                </td>
-                                            </xsl:if>
-                                            <xsl:if test="name() != 'tag'">
-                                                <xsl:attribute name="class">
-                                                    <xsl:value-of select="name()" />
-                                                </xsl:attribute>
-                                                <td>
-                                                    <xsl:value-of select="name()" />
-                                                </td>
-                                            </xsl:if>
-                                            <td>
-                                                <xsl:value-of select="@line" />
-                                            </td>
-                                            <xsl:if test="name() = 'tag'">
-                                                <td>
-                                                    <xsl:value-of select="@description" disable-output-escaping="yes" />
-                                                </td>
-                                            </xsl:if>
-                                            <xsl:if test="name() != 'tag'">
-                                                <td>
-                                                    <xsl:value-of select="." disable-output-escaping="yes" />
-                                                </td>
-                                            </xsl:if>
-                                        </tr>
-                                    </xsl:for-each>
-                                </tbody>
-                            </table>
-                        </div>
-
-                    </xsl:for-each>
+                    <xsl:apply-templates select="$files" mode="contents" />
                 </div>
             </div>
         </div>
+    </xsl:template>
+
+    <xsl:template match="file" mode="sidebar-nav">
+        <li>
+            <a href="#{@path}">
+                <i class="icon-file"></i>
+                <xsl:value-of select="@path"/>
+            </a>
+        </li>
+    </xsl:template>
+
+    <xsl:template match="file" mode="contents">
+        <xsl:variable name="item" select="parse_markers/*" />
+
+        <a name="{@path}" id="{@path}"></a>
+        <h3>
+            <i class="icon-file"></i>
+            <xsl:value-of select="@path" />
+            <small style="float: right;padding-right: 10px;">
+                <xsl:value-of select="count($item)" />
+            </small>
+        </h3>
+        <div>
+            <table class="table markers table-bordered">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Line</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <xsl:apply-templates select="$item" mode="tabular">
+                        <xsl:sort select="@line" data-type="number"/>
+                    </xsl:apply-templates>
+                </tbody>
+            </table>
+        </div>
+    </xsl:template>
+
+    <xsl:template match="*" mode="tabular">
+        <tr>
+            <xsl:if test="name() = 'tag'">
+                <xsl:attribute name="class">
+                    <xsl:value-of select="@name"/>
+                </xsl:attribute>
+                <td>
+                    <xsl:value-of select="@name" />
+                </td>
+            </xsl:if>
+            <xsl:if test="name() != 'tag'">
+                <xsl:attribute name="class">
+                    <xsl:value-of select="name()" />
+                </xsl:attribute>
+                <td>
+                    <xsl:value-of select="name()" />
+                </td>
+            </xsl:if>
+            <td>
+                <xsl:value-of select="@line" />
+            </td>
+            <xsl:if test="name() = 'tag'">
+                <td>
+                    <xsl:value-of select="@description" disable-output-escaping="yes" />
+                </td>
+            </xsl:if>
+            <xsl:if test="name() != 'tag'">
+                <td>
+                    <xsl:value-of select="." disable-output-escaping="yes" />
+                </td>
+            </xsl:if>
+        </tr>
     </xsl:template>
 
 </xsl:stylesheet>
