@@ -5,19 +5,19 @@
     <xsl:include href="../layout.xsl" />
 
     <xsl:template match="/project" mode="contents">
+        <xsl:variable name="files" select="file[markers|.//docblock/tag[@name='todo' or @name='fixme']]" />
 
         <div class="row">
             <div class="span4">
                 <ul class="side-nav nav nav-list">
                     <li class="nav-header">Navigation</li>
-                    <xsl:for-each select="/project/file">
-                        <xsl:if test="markers|.//docblock/tag[@name='todo']|.//docblock/tag[@name='fixme']">
+                    <xsl:for-each select="$files">
                         <li>
                             <a href="#{@path}">
-                                <i class="icon-file"></i> <xsl:value-of select="@path"/>
+                                <i class="icon-file"></i>
+                                <xsl:value-of select="@path"/>
                             </a>
                         </li>
-                        </xsl:if>
                     </xsl:for-each>
                 </ul>
             </div>
@@ -29,11 +29,11 @@
                     <li>Markers</li>
                 </ul>
 
-                <xsl:if test="count(/project/file/markers|//docblock/tag[@name='todo']|//docblock/tag[@name='fixme']) &lt; 1">
+                <xsl:if test="count(file/markers|//docblock/tag[@name='todo']|//docblock/tag[@name='fixme']) &lt; 1">
                     <div class="alert alert-info">No markers have been found in this project.</div>
                 </xsl:if>
 
-                <xsl:if test="count(/project/marker) > 0">
+                <xsl:if test="count(marker) > 0">
                     <div class="alert alert-info">
                         The following markers were found:
                         <xsl:copy-of select="$marker-report-overview" />
@@ -41,56 +41,54 @@
                 </xsl:if>
 
                 <div id="marker-accordion">
-                    <xsl:for-each select="/project/file">
-                        <xsl:if test="markers|.//docblock/tag[@name='todo']|.//docblock/tag[@name='fixme']">
-                            <div class="package-contents">
-                                <a name="{@path}" id="{@path}"></a>
-                                <h3>
-                                <i class="icon-file"></i>
-                                    <xsl:value-of select="@path" />
-                                    <small style="float: right;padding-right: 10px;">
-                                        <xsl:value-of select="count(markers/*|.//docblock/tag[@name='todo']|.//docblock/tag[@name='fixme'])" />
-                                    </small>
-                                </h3>
-                                <div>
-                                    <table class="table markers table-bordered">
-                                        <tr>
-                                            <th>Type</th>
-                                            <th>Line</th>
-                                            <th>Description</th>
-                                        </tr>
-                                        <xsl:for-each select="markers/*|.//docblock/tag[@name='todo']|.//docblock/tag[@name='fixme']">
-                                            <xsl:sort select="line" />
-                                            <tr>
-                                                <xsl:if test="name() = 'tag'">
-                                                    <td>
-                                                        <xsl:value-of select="@name" />
-                                                    </td>
-                                                </xsl:if>
-                                                <xsl:if test="name() != 'tag'">
-                                                    <td>
-                                                        <xsl:value-of select="name()" />
-                                                    </td>
-                                                </xsl:if>
-                                                <td>
-                                                    <xsl:value-of select="@line" />
-                                                </td>
-                                                <xsl:if test="name() = 'tag'">
-                                                    <td>
-                                                        <xsl:value-of select="@description" disable-output-escaping="yes" />
-                                                    </td>
-                                                </xsl:if>
-                                                <xsl:if test="name() != 'tag'">
-                                                    <td>
-                                                        <xsl:value-of select="." disable-output-escaping="yes" />
-                                                    </td>
-                                                </xsl:if>
-                                            </tr>
-                                        </xsl:for-each>
-                                    </table>
-                                </div>
-                            </div>
-                        </xsl:if>
+                    <xsl:for-each select="$files">
+                        <xsl:variable name="item" select="markers/*|.//docblock/tag[@name='todo' or @name='fixme']" />
+
+                        <a name="{@path}" id="{@path}"></a>
+                        <h3>
+                            <i class="icon-file"></i>
+                            <xsl:value-of select="@path" />
+                            <small style="float: right;padding-right: 10px;">
+                                <xsl:value-of select="count($item)" />
+                            </small>
+                        </h3>
+                        <div>
+                            <table class="table markers table-bordered">
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Line</th>
+                                    <th>Description</th>
+                                </tr>
+                                <xsl:for-each select="$item">
+                                    <xsl:sort select="@line" data-type="number"/>
+                                    <tr>
+                                        <xsl:if test="name() = 'tag'">
+                                            <td>
+                                                <xsl:value-of select="@name" />
+                                            </td>
+                                        </xsl:if>
+                                        <xsl:if test="name() != 'tag'">
+                                            <td>
+                                                <xsl:value-of select="name()" />
+                                            </td>
+                                        </xsl:if>
+                                        <td>
+                                            <xsl:value-of select="@line" />
+                                        </td>
+                                        <xsl:if test="name() = 'tag'">
+                                            <td>
+                                                <xsl:value-of select="@description" disable-output-escaping="yes" />
+                                            </td>
+                                        </xsl:if>
+                                        <xsl:if test="name() != 'tag'">
+                                            <td>
+                                                <xsl:value-of select="." disable-output-escaping="yes" />
+                                            </td>
+                                        </xsl:if>
+                                    </tr>
+                                </xsl:for-each>
+                            </table>
+                        </div>
                     </xsl:for-each>
                 </div>
             </div>
