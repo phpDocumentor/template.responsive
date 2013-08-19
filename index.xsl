@@ -36,12 +36,14 @@
                 </div>
                 </xsl:if>
 
-                <xsl:if test="count(/project/file/class[docblock/tag[@name='api']]) + count(/project/file/class[docblock/tag[@name='api']]/method[@visibility='public' and substring(name,1,2)!='__']) + count(/project/file/class/method[@visibility='public' and docblock/tag[@name='api']]) > 0">
+                <xsl:variable name="classes" select="/project/file/class[docblock/tag[@name='api']]"/>
+                <xsl:variable name="methods" select="/project/file/class[docblock/tag[@name='api']]/method[@visibility='public' and substring(name,1,2)!='__']|/project/file/class/method[@visibility='public' and docblock/tag[@name='api']]"/>
+
+                <xsl:if test="count($classes) + count($methods) > 0">
                 <div class="well">
                     <ul class="nav nav-list">
                         <li class="nav-header">Api</li>
 
-    		            <xsl:variable name="classes" select="/project/file/class[docblock/tag[@name='api']]"/>
                             <xsl:if test="count($classes) > 0">
                                 <li class="nav-header"><i class="icon-custom icon-class"></i> Public API Classes</li>
                                 <xsl:for-each select="$classes">
@@ -49,7 +51,6 @@
                                 </xsl:for-each>
                             </xsl:if>
 
-                            <xsl:variable name="methods" select="/project/file/class[docblock/tag[@name='api']]/method[@visibility='public' and substring(name,1,2)!='__']|/project/file/class/method[@visibility='public' and docblock/tag[@name='api']]"/>
                             <xsl:if test="count($methods) > 0">
                                 <li class="nav-header"><i class="icon-custom icon-method"></i> Public API Methods</li>
                                 <xsl:for-each select="$methods">
