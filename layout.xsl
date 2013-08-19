@@ -88,7 +88,7 @@
     </xsl:template>
 
     <xsl:template match="/" mode="header">
-        <div class="navbar navbar-fixed-top">
+        <nav class="navbar navbar-fixed-top" role="navigation">
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -102,9 +102,7 @@
                     <div class="nav-collapse">
                         <ul class="nav">
                             <li class="dropdown">
-                                <a href="#api" class="dropdown-toggle" data-toggle="dropdown">
-                                    API Documentation <b class="caret"></b>
-                                </a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">API Documentation <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <xsl:if test="/project/namespace/namespace">
                                         <li><a>Namespaces</a></li>
@@ -117,18 +115,14 @@
                                 </ul>
                             </li>
                             <li class="dropdown" id="charts-menu">
-                                <a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
-                                    Charts <b class="caret"></b>
-                                </a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Charts <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{$root}graph_class.html">
                                         <i class="icon-list-alt"></i>&#160;Class hierarchy diagram</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown" id="reports-menu">
-                                <a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
-                                    Reports <b class="caret"></b>
-                                </a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reports <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <xsl:copy-of select="$report-overview" />
                                 </ul>
@@ -144,7 +138,7 @@
             <div class="go_to_top">
                 <a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>
             </div>
-        </div>
+        </nav>
     </xsl:template>
 
     <xsl:template match="/" mode="footer"></xsl:template>

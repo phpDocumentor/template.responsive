@@ -197,8 +197,8 @@ $(document).ready(function() {
     }
 
     // Hide API Documentation menu if it's empty
-    $('.nav .dropdown a[href=#api]').next().filter(function(el) {
-        if ($(el).children().length == 0) {
+    $('.nav .dropdown a[href=#]').next().filter(function () {
+        if ($(this).children().length === 0) {
             return true;
         }
     }).parent().hide();
