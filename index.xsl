@@ -47,14 +47,26 @@
                             <xsl:if test="count($classes) > 0">
                                 <li class="nav-header"><i class="icon-custom icon-class"></i> Public API Classes</li>
                                 <xsl:for-each select="$classes">
-                                    <li><a href="classes/{name}.html" title="{docblock/description}"><xsl:value-of select="name" /></a></li>
+                                    <xsl:variable name="link">
+                                        <xsl:call-template name="createLink">
+                                            <xsl:with-param name="value" select="substring(full_name,2)"/>
+                                        </xsl:call-template>
+                                    </xsl:variable>
+
+                                    <li><a href="classes/{$link}.html" title="{docblock/description}"><xsl:value-of select="name" /></a></li>
                                 </xsl:for-each>
                             </xsl:if>
 
                             <xsl:if test="count($methods) > 0">
                                 <li class="nav-header"><i class="icon-custom icon-method"></i> Public API Methods</li>
                                 <xsl:for-each select="$methods">
-                                    <li><a href="classes/{../name}.html#{name}" title="{docblock/description}"><xsl:value-of select="../name" />.<xsl:value-of select="name" /></a></li>
+                                    <xsl:variable name="link">
+                                        <xsl:call-template name="createLink">
+                                            <xsl:with-param name="value" select="substring(../full_name,2)"/>
+                                        </xsl:call-template>
+                                    </xsl:variable>
+
+                                    <li><a href="classes/{$link}.html#{name}" title="{docblock/description}"><xsl:value-of select="../name" />.<xsl:value-of select="name" /></a></li>
                                 </xsl:for-each>
                             </xsl:if>
                     </ul>
