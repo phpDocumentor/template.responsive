@@ -14,30 +14,30 @@
 
         <div class="row">
             <div class="span7">
-                <xsl:if test="count(/project/namespace[@name != 'default' and @name != '']) > 0">
+                <xsl:if test="count(namespace[@name != 'default' and @name != '']) > 0">
                 <div class="well">
                     <ul class="nav nav-list">
                         <li class="nav-header">Namespaces</li>
-                        <xsl:apply-templates select="/project/namespace" mode="menu">
+                        <xsl:apply-templates select="namespace" mode="menu">
                             <xsl:sort select="@full_name" />
                         </xsl:apply-templates>
                     </ul>
                 </div>
                 </xsl:if>
 
-                <xsl:if test="count(/project/package[@name != '' and @name != 'default']) > 0">
+                <xsl:if test="count(package[@name != '' and @name != 'default']) > 0">
                 <div class="well">
                     <ul class="nav nav-list">
                         <li class="nav-header">Packages</li>
-                        <xsl:apply-templates select="/project/package" mode="menu">
+                        <xsl:apply-templates select="package" mode="menu">
                             <xsl:sort select="@name"/>
                         </xsl:apply-templates>
                     </ul>
                 </div>
                 </xsl:if>
 
-                <xsl:variable name="classes" select="/project/file/class[docblock/tag[@name='api']]"/>
-                <xsl:variable name="methods" select="$classes/method[@visibility='public' and substring(name,1,2)!='__']|/project/file/class/method[@visibility='public' and docblock/tag[@name='api']]"/>
+                <xsl:variable name="classes" select="file/class[docblock/tag[@name='api']]"/>
+                <xsl:variable name="methods" select="$classes/method[@visibility='public' and substring(name,1,2)!='__']|file/class/method[@visibility='public' and docblock/tag[@name='api']]"/>
 
                 <xsl:if test="count($classes) + count($methods) > 0">
                 <div class="well">
