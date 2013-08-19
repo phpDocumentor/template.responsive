@@ -42,6 +42,12 @@
         </xsl:call-template>
     </xsl:template>
 
+    <xsl:variable name="namespace-menu">
+        <xsl:apply-templates select="/project/namespace" mode="menu">
+            <xsl:sort select="@full_name" />
+        </xsl:apply-templates>
+    </xsl:variable>
+
     <xsl:template match="/project/namespace" mode="menu">
         <xsl:variable name="link">
             <xsl:call-template name="createLink">
@@ -55,6 +61,12 @@
             </a>
         </li>
     </xsl:template>
+
+    <xsl:variable name="package-menu">
+        <xsl:apply-templates select="/project/package" mode="menu">
+            <xsl:sort select="@full_name" />
+        </xsl:apply-templates>
+    </xsl:variable>
 
     <xsl:template match="/project/package" mode="menu">
         <xsl:variable name="name" select="@name"/>
@@ -96,15 +108,11 @@
                                 <ul class="dropdown-menu">
                                     <xsl:if test="/project/namespace/namespace">
                                         <li><a>Namespaces</a></li>
-                                        <xsl:apply-templates select="/project/namespace" mode="menu">
-                                            <xsl:sort select="@full_name" />
-                                        </xsl:apply-templates>
+                                        <xsl:copy-of select="$package-menu" />
                                     </xsl:if>
                                     <xsl:if test="/project/package/package or count(/project/package[@name != '']) > 1">
                                         <li><a>Packages</a></li>
-                                        <xsl:apply-templates select="/project/package" mode="menu">
-                                            <xsl:sort select="@name" />
-                                        </xsl:apply-templates>
+                                        <xsl:copy-of select="$package-menu" />
                                     </xsl:if>
                                 </ul>
                             </li>
@@ -122,7 +130,7 @@
                                     Reports <b class="caret"></b>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <xsl:apply-templates select="/" mode="report-overview" />
+                                    <xsl:copy-of select="$report-overview" />
                                 </ul>
                             </li>
                         </ul>
@@ -204,6 +212,10 @@
         </html>
     </xsl:template>
 
+    <xsl:variable name="report-overview">
+        <xsl:apply-templates select="/" mode="report-overview" />
+    </xsl:variable>
+
     <xsl:template match="/" mode="report-overview">
         <li>
             <a href="{$root}errors.html">
@@ -214,10 +226,8 @@
         <li>
             <a href="{$root}markers.html">
                 <i class="icon-map-marker"></i>&#160;Markers&#160;
-                <ul>
-                    <xsl:apply-templates select="/project/marker" mode="report-overview" />
-                </ul>
             </a>
+            <xsl:copy-of select="$marker-report-overview" />
         </li>
         <li>
             <a href="{$root}deprecated.html">
@@ -226,6 +236,12 @@
             </a>
         </li>
     </xsl:template>
+
+    <xsl:variable name="marker-report-overview">
+        <ul>
+            <xsl:apply-templates select="/project/marker" mode="report-overview" />
+        </ul>
+    </xsl:variable>
 
     <xsl:template match="/project/marker" mode="report-overview">
         <xsl:variable name="marker" select="."/>

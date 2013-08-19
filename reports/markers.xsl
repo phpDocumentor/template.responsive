@@ -36,9 +36,7 @@
                 <xsl:if test="count(/project/marker) > 0">
                     <div class="alert alert-info">
                         The following markers were found:
-                        <ul>
-                            <xsl:apply-templates select="/project/marker" mode="report-overview" />
-                        </ul>
+                        <xsl:copy-of select="$marker-report-overview" />
                     </div>
                 </xsl:if>
 

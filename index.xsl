@@ -18,9 +18,7 @@
                     <div class="well">
                         <ul class="nav nav-list">
                             <li class="nav-header">Namespaces</li>
-                            <xsl:apply-templates select="namespace" mode="menu">
-                                <xsl:sort select="@full_name" />
-                            </xsl:apply-templates>
+                            <xsl:copy-of select="$namespace-menu" />
                         </ul>
                     </div>
                 </xsl:if>
@@ -29,9 +27,7 @@
                     <div class="well">
                         <ul class="nav nav-list">
                             <li class="nav-header">Packages</li>
-                            <xsl:apply-templates select="package" mode="menu">
-                                <xsl:sort select="@name"/>
-                            </xsl:apply-templates>
+                            <xsl:copy-of select="$package-menu" />
                         </ul>
                     </div>
                 </xsl:if>
@@ -86,7 +82,7 @@
                 <div class="well">
                     <ul class="nav nav-list">
                         <li class="nav-header">Reports</li>
-                        <xsl:apply-templates select="/" mode="report-overview" />
+                        <xsl:copy-of select="$report-overview" />
                     </ul>
                 </div>
             </div>
