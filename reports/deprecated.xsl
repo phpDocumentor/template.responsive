@@ -8,13 +8,13 @@
         <xsl:variable name="files" select="file[.//docblock/tag[@name='deprecated']]" />
 
         <div class="row">
-
             <div class="span4">
                 <ul class="side-nav nav nav-list">
                     <li class="nav-header">Navigation</li>
                     <xsl:apply-templates select="$files" mode="sidebar-nav" />
                 </ul>
             </div>
+
             <div class="span8">
                 <ul class="breadcrumb">
                     <li><a href="{$root}"><i class="icon-stop"></i></a><span class="divider">\</span></li>
@@ -23,11 +23,11 @@
                 <xsl:if test="count(//docblock/tag[@name='deprecated']) &lt; 1">
                     <div class="alert alert-info">No deprecated elements have been found in this project.</div>
                 </xsl:if>
+
                 <div id="marker-accordion">
                     <xsl:apply-templates select="$files" mode="contents" />
                 </div>
             </div>
-
         </div>
     </xsl:template>
 
@@ -53,15 +53,19 @@
         </h3>
         <div>
             <table class="table markers table-bordered">
-                <tr>
-                    <th>Type</th>
-                    <th>Line</th>
-                    <th>Description</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Line</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
 
-                <xsl:apply-templates select="$item" mode="tabular">
-                    <xsl:sort select="@line" data-type="number"/>
-                </xsl:apply-templates>
+                <tbody>
+                    <xsl:apply-templates select="$item" mode="tabular">
+                        <xsl:sort select="@line" data-type="number"/>
+                    </xsl:apply-templates>
+                </tbody>
             </table>
         </div>
     </xsl:template>

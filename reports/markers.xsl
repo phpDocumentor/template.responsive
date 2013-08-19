@@ -16,7 +16,6 @@
             </div>
 
             <div class="span8">
-
                 <ul class="breadcrumb">
                     <li><a href="{$root}"><i class="icon-map-marker"></i></a><span class="divider">\</span></li>
                     <li>Markers</li>
@@ -28,7 +27,7 @@
 
                 <xsl:if test="count(marker) > 0">
                     <div class="alert alert-info">
-                        The following markers were found:
+                        <xsl:text>The following markers were found:</xsl:text>
                         <xsl:copy-of select="$marker-report-overview" />
                     </div>
                 </xsl:if>
@@ -37,7 +36,6 @@
                     <xsl:apply-templates select="$files" mode="contents" />
                 </div>
             </div>
-
         </div>
     </xsl:template>
 
@@ -45,7 +43,7 @@
         <li>
             <a href="#{@path}">
                 <i class="icon-file"></i>
-                <xsl:value-of select="@path"/>
+                <xsl:value-of select="@path" />
             </a>
         </li>
     </xsl:template>
@@ -63,15 +61,19 @@
         </h3>
         <div>
             <table class="table markers table-bordered">
-                <tr>
-                    <th>Type</th>
-                    <th>Line</th>
-                    <th>Description</th>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Line</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
 
-                <xsl:apply-templates select="$item" mode="tabular">
-                    <xsl:sort select="@line" data-type="number"/>
-                </xsl:apply-templates>
+                <tbody>
+                    <xsl:apply-templates select="$item" mode="tabular">
+                        <xsl:sort select="@line" data-type="number"/>
+                    </xsl:apply-templates>
+                </tbody>
             </table>
         </div>
     </xsl:template>

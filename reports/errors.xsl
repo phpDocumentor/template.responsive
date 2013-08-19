@@ -9,7 +9,6 @@
 
         <div class="row">
             <div class="span4">
-
                 <ul class="side-nav nav nav-list">
                     <li class="nav-header">Filter type</li>
                     <li>
@@ -45,7 +44,7 @@
         <li>
             <a href="#{@path}">
                 <i class="icon-file"></i>
-                <xsl:value-of select="@path"/>
+                <xsl:value-of select="@path" />
             </a>
         </li>
     </xsl:template>
@@ -70,8 +69,8 @@
                         <th>Description</th>
                     </tr>
                 </thead>
-                <tbody>
 
+                <tbody>
                     <xsl:apply-templates select="$item" mode="tabular">
                         <xsl:sort select="@line" data-type="number"/>
                     </xsl:apply-templates>
