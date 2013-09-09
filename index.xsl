@@ -78,6 +78,33 @@
                         <xsl:apply-templates select="/" mode="report-overview" />
                     </ul>
                 </div>
+                <div class="well">
+                    <table class="table table-condensed">
+                        <tr>
+                            <th colspan="2">Summary</th>
+                        </tr>
+                        <tr>
+                            <td>Files</td>
+                            <td><span class="label label-info"><xsl:value-of select="count(/project/file)" /></span></td>
+                        </tr>
+                        <tr>
+                            <td>Classes</td>
+                            <td><span class="label label-info"><xsl:value-of select="count(/project/*/class)" /></span></td>
+                        </tr>
+                        <tr>
+                            <td>Functions</td>
+                            <td><span class="label label-info"><xsl:value-of select="count(/project/*/function)" /></span></td>
+                        </tr>
+                        <tr>
+                            <td>Methods</td>
+                            <td><span class="label label-info"><xsl:value-of select="count(/project/*//method)" /></span></td>
+                        </tr>
+                        <tr>
+                            <td>Constants</td>
+                            <td><span class="label label-info"><xsl:value-of select="count(/project/*//constant)" /></span></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </xsl:template>
