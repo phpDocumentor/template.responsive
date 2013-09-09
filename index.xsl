@@ -13,12 +13,12 @@
         </div>
         
         <div class="row">
-			<div class="span12">
-				<div class="well">
-					<xsl:value-of select="/project/introduction"  disable-output-escaping="yes"/>
-				</div>
-			</div>
-		</div>
+            <div class="span12">
+                <div class="well">
+                    <xsl:value-of select="/project/introduction"  disable-output-escaping="yes"/>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="span7">
