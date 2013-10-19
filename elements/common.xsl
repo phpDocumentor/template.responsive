@@ -164,7 +164,7 @@
         </tr>
     </xsl:template>
 
-    <xsl:template match="tag[@name = 'license' or @name = 'link' or @name = 'see' or @name = 'author']" mode="tabular">
+    <xsl:template match="tag[@name = 'license' or @name = 'link' or @name = 'see' or @name = 'uses' or @name = 'author']" mode="tabular">
         <tr>
             <th><xsl:value-of select="@name"/></th>
             <td>
