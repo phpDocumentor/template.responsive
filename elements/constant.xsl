@@ -16,8 +16,11 @@
         <xsl:param name="exclude-link" />
 
         <xsl:variable name="name" select="."/>
+        <xsl:variable name="value" select="../value"/>
         <pre>
             <xsl:value-of select="$name"/>
+            <xsl:text>&#160;=&#160;</xsl:text>
+            <xsl:value-of select="$value"/>
             <xsl:text>&#160;</xsl:text>
             <xsl:apply-templates select="../docblock/tag[@name='var']" mode="signature">
                 <xsl:with-param name="exclude-link" select="$exclude-link"/>
@@ -30,7 +33,7 @@
         <xsl:variable name="desc">
             <xsl:apply-templates select="name" />
         </xsl:variable>
-        <div class="element clickable {local-name(.)} {@visibility} {local-name(.)}_{translate(name, '$', '')}" data-toggle="collapse" data-target=".{local-name(.)}_{translate(name, '$', '')} .collapse">
+        <div class="element clickable {local-name(.)} {@visibility} {local-name(.)}_{translate(name, '$', '')}" data-toggle="collapse" data-target=".{local-name(.)}_{translate(name, '$', '')} .collapse" title="{@visibility}">
             <h2>
                 <xsl:if test="not($desc)">
                     <xsl:value-of select="name"/>

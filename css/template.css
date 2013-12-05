@@ -340,12 +340,6 @@ i.icon-custom
     display: none;
 }
 
-.btn-group.view
-{
-    margin-left: 20px;
-    margin-bottom: 20px;
-}
-
 .visibility button
 {
     height: 24px;
@@ -437,6 +431,14 @@ div.labels
     font-size: 13px;
 }
 
+.nav-list .nav-header .side-nav-header
+{
+    font-weight: bold;
+    line-height: 18px;
+    color: #999999;
+    text-transform: uppercase;
+}
+
 .detail-description code {
     white-space: pre;
     display:     inline-block;
@@ -501,7 +503,7 @@ div.labels
     {
         font-size: 0.80em;
         margin-bottom: 7px;
-        display: block;
+        display: inline-block;
         float: right;
     }
 }

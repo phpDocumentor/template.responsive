@@ -81,6 +81,12 @@
             <xsl:with-param name="exclude-link" select="$exclude-link"/>
         </xsl:apply-templates>
         <xsl:value-of select="name"/>
+        <xsl:if test="default[.!='']">
+            <code>
+                <xsl:text>&#160;=&#160;</xsl:text>
+                <xsl:value-of select="default"/>
+            </code>
+        </xsl:if>
     </xsl:template>
 
     <!-- Property/Constant list item in the sidebar -->
@@ -158,7 +164,7 @@
         </tr>
     </xsl:template>
 
-    <xsl:template match="tag[@name = 'license' or @name = 'link' or @name = 'see' or @name = 'author']" mode="tabular">
+    <xsl:template match="tag[@name = 'license' or @name = 'link' or @name = 'see' or @name = 'uses' or @name = 'author']" mode="tabular">
         <tr>
             <th><xsl:value-of select="@name"/></th>
             <td>
