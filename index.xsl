@@ -14,7 +14,7 @@
 
         <div class="row">
             <div class="span7">
-                <xsl:if test="count(/project/namespace[@name != 'default' and @name != '']) > 0">
+                <xsl:if test="count(/project/namespace[@name != 'default' and @name != 'global' and @name != '']) > 0">
                 <div class="well">
                     <ul class="nav nav-list">
                         <li class="nav-header">Namespaces</li>
@@ -25,7 +25,7 @@
                 </div>
                 </xsl:if>
 
-                <xsl:if test="count(/project/package[@name != '' and @name != 'default']) > 0">
+                <xsl:if test="count(/project/package[@name != '' and @name != 'default']) > 0 or count(/project/namespace[@name != 'default' and @name != 'global' and @name != '']) = 0">
                 <div class="well">
                     <ul class="nav nav-list">
                         <li class="nav-header">Packages</li>
