@@ -9,7 +9,8 @@
             <xsl:if test="count(/project/file/constant[@namespace=$fqnn]
                 |/project/file/function[@namespace=$fqnn]
                 |/project/file/class[@namespace=$fqnn]
-                |/project/file/interface[@namespace=$fqnn]) > 0"
+                |/project/file/interface[@namespace=$fqnn]
+                |/project/file/trait[@namespace=$fqnn]) > 0"
             >
                 <xsl:variable name="link">
                     <xsl:call-template name="createLink">
@@ -23,7 +24,8 @@
             <xsl:if test="count(/project/file/constant[@namespace=$fqnn]
                 |/project/file/function[@namespace=$fqnn]
                 |/project/file/class[@namespace=$fqnn]
-                |/project/file/interface[@namespace=$fqnn]) = 0"
+                |/project/file/interface[@namespace=$fqnn]
+                |/project/file/trait[@namespace=$fqnn]) = 0"
             >
                 <span class="empty-namespace"><i class="icon-stop"></i> <xsl:value-of select="@name" /></span>
             </xsl:if>
@@ -45,6 +47,7 @@
             |/project/file/function[@namespace=$fqnn]
             |/project/file/class[@namespace=$fqnn]
             |/project/file/interface[@namespace=$fqnn]
+            |/project/file/trait[@namespace=$fqnn]
             |namespace) > 0"
         >
             <ul class="breadcrumb">
@@ -59,7 +62,8 @@
                 <xsl:if test="count(/project/file/constant[@namespace=$fqnn]
                     |/project/file/function[@namespace=$fqnn]
                     |/project/file/class[@namespace=$fqnn]
-                    |/project/file/interface[@namespace=$fqnn]) = 0"
+                    |/project/file/interface[@namespace=$fqnn]
+                    |/project/file/trait[@namespace=$fqnn]) = 0"
                 >
                     <div class="alert alert-info">This namespace does not contain any documentable elements</div>
                 </xsl:if>
@@ -74,9 +78,10 @@
 
                 <xsl:variable name="classes" select="/project/file/class[@namespace=$fqnn]"/>
                 <xsl:variable name="interfaces" select="/project/file/interface[@namespace=$fqnn]"/>
-                <xsl:if test="count($classes)+count($interfaces) > 0">
-                    <h3><i title="Class" class="icon-custom icon-class"></i> Classes and interfaces</h3>
-                    <xsl:apply-templates select="$classes|$interfaces" mode="compact">
+                <xsl:variable name="traits" select="/project/file/trait[@namespace=$fqnn]"/>
+                <xsl:if test="count($classes)+count($interfaces)+count($traits) > 0">
+                    <h3><i title="Class" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
+                    <xsl:apply-templates select="$classes|$interfaces|$traits" mode="compact">
                         <xsl:sort select="local-name()" order="descending" />
                         <xsl:sort select="full_name" />
                     </xsl:apply-templates>
@@ -123,6 +128,14 @@
                 <xsl:apply-templates select="$functions" mode="sidebar">
                     <xsl:sort select="name" />
                 </xsl:apply-templates>
+            </xsl:if>
+
+            <xsl:variable name="traits" select="/project/file/trait[@namespace=$parent_name]"/>
+            <xsl:if test="count($interfaces) > 0">
+                <li class="nav-header"><i title="Traits" class="icon-custom icon-trait"></i> Traits</li>
+                <xsl:for-each select="$traits">
+                    <li><a href="#{name}" title="{docblock/description}"><xsl:value-of select="name" /></a></li>
+                </xsl:for-each>
             </xsl:if>
 
             <xsl:variable name="interfaces" select="/project/file/interface[@namespace=$parent_name]"/>
