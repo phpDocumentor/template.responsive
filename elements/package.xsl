@@ -126,7 +126,7 @@
             </xsl:if>
 
             <xsl:variable name="traits" select="/project/file/trait[@package=$name]"/>
-            <xsl:if test="count($interfaces) > 0">
+            <xsl:if test="count($traits) > 0">
                 <li class="nav-header"><i title="Traits" class="icon-custom icon-trait"></i> Traits</li>
                 <xsl:for-each select="$traits">
                     <li><a href="#{name}" title="{docblock/description}"><xsl:value-of select="name" /></a></li>
