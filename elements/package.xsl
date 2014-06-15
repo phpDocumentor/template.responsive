@@ -8,7 +8,8 @@
             select="count(/project/file/constant[@package=$fqnn]
                 |/project/file/function[@package=$fqnn]
                 |/project/file/class[@package=$fqnn]
-                |/project/file/interface[@package=$fqnn])"
+                |/project/file/interface[@package=$fqnn]
+                |/project/file/trait[@package=$fqnn])"
         />
 
         <li>
@@ -42,6 +43,7 @@
             |/project/file/function[@package=$fqnn]
             |/project/file/class[@package=$fqnn]
             |/project/file/interface[@package=$fqnn]
+            |/project/file/trait[@package=$fqnn]
             |package) > 0"
         >
             <ul class="breadcrumb">
@@ -57,6 +59,7 @@
                     |/project/file/function[@package=$fqnn]
                     |/project/file/class[@package=$fqnn]
                     |/project/file/interface[@package=$fqnn]
+                    |/project/file/trait[@package=$fqnn]
                     |package) = 0"
                 >
                     <div class="alert alert-info">This package does not contain any documentable elements</div>
@@ -70,9 +73,9 @@
                     </xsl:apply-templates>
                 </xsl:if>
 
-                <xsl:variable name="classes" select="/project/file/class[@package=$fqnn]|/project/file/interface[@package=$fqnn]"/>
+                <xsl:variable name="classes" select="/project/file/class[@package=$fqnn]|/project/file/interface[@package=$fqnn]|/project/file/trait[@package=$fqnn]"/>
                 <xsl:if test="count($classes) > 0">
-                    <h3><i title="Classes" class="icon-custom icon-class"></i> Classes and interfaces</h3>
+                    <h3><i title="Classes" class="icon-custom icon-class"></i> Classes, interfaces, and traits</h3>
                     <xsl:apply-templates select="$classes" mode="compact">
                         <xsl:sort select="local-name()" order="descending" />
                         <xsl:sort select="full_name" />
@@ -120,6 +123,14 @@
                 <xsl:apply-templates select="$functions" mode="sidebar">
                     <xsl:sort select="name" />
                 </xsl:apply-templates>
+            </xsl:if>
+
+            <xsl:variable name="traits" select="/project/file/trait[@package=$name]"/>
+            <xsl:if test="count($traits) > 0">
+                <li class="nav-header"><i title="Traits" class="icon-custom icon-trait"></i> Traits</li>
+                <xsl:for-each select="$traits">
+                    <li><a href="#{name}" title="{docblock/description}"><xsl:value-of select="name" /></a></li>
+                </xsl:for-each>
             </xsl:if>
 
             <xsl:variable name="interfaces" select="/project/file/interface[@package=$name]"/>

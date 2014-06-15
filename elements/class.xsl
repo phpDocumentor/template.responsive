@@ -1,8 +1,8 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
     <xsl:output indent="yes" method="html" />
 
-    <!-- Sidebar index for classes and interfaces -->
-        <xsl:template match="/project/file/class|/project/file/interface" mode="sidebar">
+    <!-- Sidebar index for classes, interfaces, and traits -->
+        <xsl:template match="/project/file/class|/project/file/interface|/project/file/trait" mode="sidebar">
         <!-- Visibility toggles -->
         <div class="btn-toolbar">
             <div class="btn-group visibility" data-toggle="buttons-checkbox">
@@ -132,7 +132,7 @@
         </xsl:if>
     </xsl:template>
 
-    <xsl:template match="class|interface" mode="compact">
+    <xsl:template match="class|interface|trait" mode="compact">
         <xsl:variable name="filename">
             <xsl:call-template name="createLink">
                 <xsl:with-param name="value" select="full_name"/>
@@ -148,7 +148,7 @@
         </div>
     </xsl:template>
 
-    <xsl:template match="class|interface" mode="contents">
+    <xsl:template match="class|interface|trait" mode="contents">
         <xsl:variable name="namespace" select="@namespace"/>
         <xsl:variable name="filename">
             <xsl:call-template name="createLink">

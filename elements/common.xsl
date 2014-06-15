@@ -128,7 +128,7 @@
         </li>
     </xsl:template>
 
-    <xsl:template match="function|property|constant|class|interface" mode="sidebar">
+    <xsl:template match="function|property|constant|class|interface|trait" mode="sidebar">
         <li>
             <xsl:attribute name="class">
                 <xsl:value-of select="local-name()"/>
