@@ -26,7 +26,7 @@
     <transformation writer="xsl" source="templates/responsive/index.xsl" artifact="index.html"/>
     <transformation query="//namespace/@full_name" writer="xsl" source="templates/responsive/namespaces.xsl" artifact="namespaces/{$full_name}"/>
     <transformation query="//package/@full_name" writer="xsl" source="templates/responsive/packages.xsl" artifact="packages/{$full_name}"/>
-    <transformation query="//class/full_name|//interface/full_name" writer="xsl" source="templates/responsive/class.xsl" artifact="classes/{$full_name}"/>
+    <transformation query="//class/full_name|//interface/full_name|//trait/full_name" writer="xsl" source="templates/responsive/class.xsl" artifact="classes/{$full_name}"/>
     <transformation writer="xsl" source="templates/responsive/reports/markers.xsl" artifact="markers.html"/>
     <transformation writer="xsl" source="templates/responsive/reports/errors.xsl" artifact="errors.html"/>
     <transformation writer="xsl" source="templates/responsive/reports/deprecated.xsl" artifact="deprecated.html"/>
