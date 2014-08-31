@@ -59,14 +59,38 @@ function initializeContents()
         $('.element.inherited,.side-nav li.inherited').toggle($(this).hasClass('active'));
     }).click();
 
-    $('.type-filter button.critical').click(function(){
+    $('.type-filter button.critical').click(function() {
+        packageContentDivs = $('.package-contents');
+        packageContentDivs.show();
         $('tr.critical').toggle($(this).hasClass('active'));
+        packageContentDivs.each(function() {
+            var rowCount = $(this).find('tbody tr:visible').length;
+
+            $(this).find('.badge-info').html(rowCount);
+            $(this).toggle(rowCount > 0);
+        });
     });
     $('.type-filter button.error').click(function(){
+        packageContentDivs = $('.package-contents');
+        packageContentDivs.show();
         $('tr.error').toggle($(this).hasClass('active'));
+        packageContentDivs.each(function() {
+            var rowCount = $(this).find('tbody tr:visible').length;
+
+            $(this).find('.badge-info').html(rowCount);
+            $(this).toggle(rowCount > 0);
+        });
     });
     $('.type-filter button.notice').click(function(){
+        packageContentDivs = $('.package-contents');
+        packageContentDivs.show();
         $('tr.notice').toggle($(this).hasClass('active'));
+        packageContentDivs.each(function() {
+            var rowCount = $(this).find('tbody tr:visible').length;
+
+            $(this).find('.badge-info').html(rowCount);
+            $(this).toggle(rowCount > 0);
+        });
     });
 
     $('.view button.details').click(function(){
