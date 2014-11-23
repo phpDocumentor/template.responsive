@@ -53,7 +53,15 @@
                             <xsl:if test="count($methods) > 0">
                                 <li class="nav-header"><i class="icon-custom icon-method"></i> Public API Methods</li>
                                 <xsl:for-each select="$methods">
-                                    <li><a href="classes/{../name}.html#{name}" title="{docblock/description}"><xsl:value-of select="../name" />.<xsl:value-of select="name" /></a></li>
+                                    <xsl:variable name="filename">
+                                        <xsl:call-template name="createLink">
+                                            <xsl:with-param name="value" select="../full_name"/>
+                                        </xsl:call-template>
+                                    </xsl:variable>
+                                    <xsl:variable name="link" xml:space="preserve"><xsl:value-of select="$root" />classes/<xsl:value-of select="substring($filename, 2)" />.html</xsl:variable>
+
+
+                                    <li><a href="{$link}#{name}" title="{docblock/description}"><xsl:value-of select="../name" />.<xsl:value-of select="name" /></a></li>
                                 </xsl:for-each>
                             </xsl:if>
                     </ul>
