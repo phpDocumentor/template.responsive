@@ -109,6 +109,7 @@
 
     <xsl:template match="namespace" mode="sidebar-nav">
         <xsl:param name="parent_name" select="@full_name"/>
+        <xsl:variable name="fqnn" select="concat($parent_name, @name)" />
 
         <div class="btn-group view pull-right" data-toggle="buttons-radio">
           <button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button>
@@ -122,7 +123,7 @@
                 <xsl:with-param name="parent_name" select="$parent_name"/>
             </xsl:apply-templates>
 
-            <xsl:variable name="functions" select="/project/file/function[@namespace=$parent_name]"/>
+            <xsl:variable name="functions" select="/project/file/function[@namespace=$fqnn]"/>
             <xsl:if test="count($functions) > 0">
                 <li class="nav-header"><i title="Functions" class="icon-custom icon-function"></i> Functions</li>
                 <xsl:apply-templates select="$functions" mode="sidebar">
@@ -130,15 +131,15 @@
                 </xsl:apply-templates>
             </xsl:if>
 
-            <xsl:variable name="traits" select="/project/file/trait[@namespace=$parent_name]"/>
-            <xsl:if test="count($interfaces) > 0">
+            <xsl:variable name="traits" select="/project/file/trait[@namespace=$fqnn]"/>
+            <xsl:if test="count($traits) > 0">
                 <li class="nav-header"><i title="Traits" class="icon-custom icon-trait"></i> Traits</li>
                 <xsl:for-each select="$traits">
                     <li><a href="#{name}" title="{docblock/description}"><xsl:value-of select="name" /></a></li>
                 </xsl:for-each>
             </xsl:if>
 
-            <xsl:variable name="interfaces" select="/project/file/interface[@namespace=$parent_name]"/>
+            <xsl:variable name="interfaces" select="/project/file/interface[@namespace=$fqnn]"/>
             <xsl:if test="count($interfaces) > 0">
                 <li class="nav-header"><i title="Interfaces" class="icon-custom icon-interface"></i> Interfaces</li>
                 <xsl:for-each select="$interfaces">
@@ -146,7 +147,7 @@
                 </xsl:for-each>
             </xsl:if>
 
-            <xsl:variable name="classes" select="/project/file/class[@namespace=$parent_name]"/>
+            <xsl:variable name="classes" select="/project/file/class[@namespace=$fqnn]"/>
             <xsl:if test="count($classes) > 0">
                 <li class="nav-header"><i title="Classes" class="icon-custom icon-class"></i> Classes</li>
                 <xsl:for-each select="$classes">
@@ -154,7 +155,7 @@
                 </xsl:for-each>
             </xsl:if>
 
-            <xsl:variable name="constants" select="/project/file/constant[@namespace=$parent_name]"/>
+            <xsl:variable name="constants" select="/project/file/constant[@namespace=$fqnn]"/>
             <xsl:if test="count($constants) > 0">
                 <li class="nav-header"><i title="Constants" class="icon-custom icon-constant"></i> Constants</li>
                 <xsl:apply-templates select="$constants" mode="sidebar">
