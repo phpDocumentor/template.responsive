@@ -12,6 +12,16 @@
             <h2>Documentation</h2>
         </div>
 
+        <xsl:when test="/project/introduction">
+            <div class="row">
+                <div class="span12">
+                    <div class="well">
+                        <xsl:value-of select="/project/introduction"  disable-output-escaping="yes"/>
+                    </div>
+                </div>
+            </div>
+        </xsl:when>
+
         <div class="row">
             <div class="span7">
                 <xsl:if test="count(/project/namespace[@name != 'default' and @name != 'global' and @name != '']) > 0">
